@@ -1,7 +1,7 @@
 package com.voluptaria.vlpt.api.controller;
 
-import com.voluptaria.vlpt.model.entity.Cliente;
-import com.voluptaria.vlpt.service.ClienteService;
+import com.voluptaria.vlpt.model.entity.Funcionario;
+import com.voluptaria.vlpt.service.FuncionarioService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,22 +15,22 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/clientes")
+@RequestMapping("/api/v1/funcionarios")
 @RequiredArgsConstructor
-public class ClienteController {
+public class FuncionarioController {
 
-    private final ClienteService service;
+    private final FuncionarioService service;
 
     @GetMapping()
     public ResponseEntity get() {
-        List<Cliente> clientes = service.getClientes();
-        return ResponseEntity.ok(clientes);
+        List<Funcionario> funcionarios = service.getFuncionarios();
+        return ResponseEntity.ok(funcionarios);
     }
 
     @GetMapping("/{cnpj}")
     public ResponseEntity get(@PathVariable("cpf") String cpf){
-        Optional<Cliente> cliente = service.getClienteById(cpf);
-        return ResponseEntity.ok(cliente);
+        Optional<Funcionario> funcionario = service.getFuncionarioById(cpf);
+        return ResponseEntity.ok(funcionario);
 
     }
 }
