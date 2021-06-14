@@ -1,9 +1,11 @@
 package com.voluptaria.vlpt.dto;
 
+import com.voluptaria.vlpt.model.Cliente;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.modelmapper.ModelMapper;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +32,11 @@ public class ClienteDTO {
     private String cidade;
     private String cep;
 
+    public static ClienteDTO createDTO(Cliente cliente) {
+        ModelMapper modelMapper = new ModelMapper();
+        ClienteDTO dto = modelMapper.map(cliente, ClienteDTO.class);
+        return dto;
+    }
 
 
 }

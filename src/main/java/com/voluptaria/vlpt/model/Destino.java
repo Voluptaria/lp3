@@ -20,8 +20,6 @@ public class Destino {
 
     private String dataFinal;
 
-    private Long idPacote;
-
     @ManyToOne
     private  Pacote pacote;
     @ManyToOne

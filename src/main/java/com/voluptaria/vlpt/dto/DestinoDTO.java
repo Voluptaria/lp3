@@ -1,9 +1,11 @@
 package com.voluptaria.vlpt.dto;
 
+import com.voluptaria.vlpt.model.Destino;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.modelmapper.ModelMapper;
 
 @Data
 @NoArgsConstructor
@@ -22,6 +24,12 @@ public class DestinoDTO {
 
     private Long idEmpresa;
 
-
+    public static DestinoDTO createDTO(Destino destino) {
+        ModelMapper modelMapper = new ModelMapper();
+        DestinoDTO dto = modelMapper.map(destino, DestinoDTO.class);
+        assert dto.getIdPacote().equals(destino.getPacote().getId());
+        assert dto.getIdEmpresa().equals(destino.getEmpresa().getId());
+        return dto;
+    }
 
 }

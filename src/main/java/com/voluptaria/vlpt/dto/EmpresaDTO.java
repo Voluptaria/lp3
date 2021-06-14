@@ -1,9 +1,11 @@
 package com.voluptaria.vlpt.dto;
 
+import com.voluptaria.vlpt.model.Empresa;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.modelmapper.ModelMapper;
 
 @Data
 @NoArgsConstructor
@@ -28,7 +30,11 @@ public class EmpresaDTO {
 
     private String tipoEmpresa;
 
-
+    public static EmpresaDTO createDTO(Empresa empresa) {
+        ModelMapper modelMapper = new ModelMapper();
+        EmpresaDTO dto = modelMapper.map(empresa, EmpresaDTO.class);
+        return dto;
+    }
 
 
 }

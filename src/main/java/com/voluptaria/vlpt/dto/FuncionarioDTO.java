@@ -1,9 +1,11 @@
 package com.voluptaria.vlpt.dto;
 
+import com.voluptaria.vlpt.model.Funcionario;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.modelmapper.ModelMapper;
 
 @Data
 @Builder
@@ -29,6 +31,12 @@ public class FuncionarioDTO {
     private String senha;
 
     private String tipoFuncionario;
+
+    public static FuncionarioDTO createDTO(Funcionario funcionario) {
+        ModelMapper modelMapper = new ModelMapper();
+        FuncionarioDTO dto = modelMapper.map(funcionario, FuncionarioDTO.class);
+        return dto;
+    }
 
 
 
