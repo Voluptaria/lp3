@@ -29,5 +29,5 @@ public class Funcionario {
     private String cidade;
     private String cep;
     private String senha;
-    private String tipo;
+    //private TipoFuncionario tipo;
 }
