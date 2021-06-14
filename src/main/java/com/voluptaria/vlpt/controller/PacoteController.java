@@ -1,5 +1,6 @@
 package com.voluptaria.vlpt.controller;
 
+import com.voluptaria.vlpt.dto.PacoteDTO;
 import com.voluptaria.vlpt.model.Pacote;
 import com.voluptaria.vlpt.service.PacoteService;
 import lombok.AllArgsConstructor;
@@ -20,13 +21,12 @@ public class PacoteController {
     private final PacoteService service;
 
     @GetMapping()
-    public ResponseEntity<List<Pacote>> get() {
-        List<Pacote> pacotes = service.getPacotes();
-        return ResponseEntity.ok(pacotes);
+    public ResponseEntity<List<PacoteDTO>> get() {
+        return ResponseEntity.ok(service.getPacotes());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pacote> get(@PathVariable Long id){
+    public ResponseEntity<PacoteDTO> get(@PathVariable Long id){
        return ResponseEntity.ok(service.getPacoteById(id));
 
     }

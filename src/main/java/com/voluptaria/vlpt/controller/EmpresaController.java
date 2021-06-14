@@ -1,5 +1,6 @@
 package com.voluptaria.vlpt.controller;
 
+import com.voluptaria.vlpt.dto.EmpresaDTO;
 import com.voluptaria.vlpt.model.Empresa;
 import com.voluptaria.vlpt.service.EmpresaService;
 import lombok.AllArgsConstructor;
@@ -20,13 +21,12 @@ public class EmpresaController {
     private final EmpresaService service;
 
     @GetMapping()
-    public ResponseEntity<List<Empresa>> get() {
-        List<Empresa> empresas = service.getEmpresas();
-        return ResponseEntity.ok(empresas);
+    public ResponseEntity<List<EmpresaDTO>> get() {
+        return ResponseEntity.ok(service.getEmpresas());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Empresa> get(@PathVariable Long id){
+    public ResponseEntity<EmpresaDTO> get(@PathVariable Long id){
         return ResponseEntity.ok(service.getEmpresaById(id));
 
     }

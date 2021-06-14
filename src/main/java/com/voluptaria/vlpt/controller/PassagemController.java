@@ -1,6 +1,6 @@
 package com.voluptaria.vlpt.controller;
 
-import com.voluptaria.vlpt.model.Passagem;
+import com.voluptaria.vlpt.dto.PassagemDTO;
 import com.voluptaria.vlpt.service.PassagemService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +20,12 @@ public class PassagemController {
     private final PassagemService service;
 
     @GetMapping()
-    public ResponseEntity<List<Passagem>> get(){
-        List<Passagem> passagens = service.getPassagens();
-        return ResponseEntity.ok(passagens);
+    public ResponseEntity<List<PassagemDTO>> get(){
+        return ResponseEntity.ok(service.getPassagens());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Passagem> get(@PathVariable Long id){
+    public ResponseEntity<PassagemDTO> get(@PathVariable Long id){
         return ResponseEntity.ok(service.getPassagemById(id));
 
     }

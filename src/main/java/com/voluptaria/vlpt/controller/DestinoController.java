@@ -1,6 +1,6 @@
 package com.voluptaria.vlpt.controller;
 
-import com.voluptaria.vlpt.model.Destino;
+import com.voluptaria.vlpt.dto.DestinoDTO;
 import com.voluptaria.vlpt.service.DestinoService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +20,12 @@ public class DestinoController {
     private final DestinoService service;
 
     @GetMapping()
-    public ResponseEntity<List<Destino>> get() {
-        List<Destino> destinos = service.getDestinos();
-        return ResponseEntity.ok(destinos);
+    public ResponseEntity<List<DestinoDTO>> get() {
+        return ResponseEntity.ok(service.getDestinos());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Destino> get(@PathVariable Long id){
+    public ResponseEntity<DestinoDTO> get(@PathVariable Long id){
        return ResponseEntity.ok(service.getDestinoById(id));
 
     }

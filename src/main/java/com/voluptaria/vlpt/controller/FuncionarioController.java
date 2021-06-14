@@ -1,5 +1,6 @@
 package com.voluptaria.vlpt.controller;
 
+import com.voluptaria.vlpt.dto.FuncionarioDTO;
 import com.voluptaria.vlpt.model.Funcionario;
 import com.voluptaria.vlpt.service.FuncionarioService;
 import lombok.AllArgsConstructor;
@@ -20,13 +21,12 @@ public class FuncionarioController {
     private final FuncionarioService service;
 
     @GetMapping()
-    public ResponseEntity<List<Funcionario>> get() {
-        List<Funcionario> funcionarios = service.getFuncionarios();
-        return ResponseEntity.ok(funcionarios);
+    public ResponseEntity<List<FuncionarioDTO>> get() {
+        return ResponseEntity.ok(service.getFuncionarios());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Funcionario> get(@PathVariable Long id){
+    public ResponseEntity<FuncionarioDTO> get(@PathVariable Long id){
        return ResponseEntity.ok(service.getFuncionarioById(id));
 
     }
