@@ -11,12 +11,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Pacote {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     private Cliente cliente;
+
     @ManyToOne
     private Funcionario funcionario;
 
