@@ -1,29 +1,27 @@
-package com.voluptaria.vlpt.model;
+package com.voluptaria.vlpt.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Destino {
+@Builder
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class DestinoDTO {
+
     private Long id;
 
     private  String dataInicial;
-
     private String dataFinal;
+    private String cnpjEmpresa;
 
     private Long idPacote;
 
-    @ManyToOne
-    private  Pacote pacote;
-    @ManyToOne
-    private  Empresa empresa;
+    private Long idEmpresa;
+
+
+
 }

@@ -19,6 +19,5 @@ public class Pacote {
     private Cliente cliente;
     @ManyToOne
     private Funcionario funcionario;
-    private String cpfFuncionario;
-    private String cpfCliente;
+
 }
