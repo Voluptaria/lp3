@@ -1,7 +1,7 @@
 package com.voluptaria.vlpt.api.controller;
 
-import com.voluptaria.vlpt.model.entity.Pacote;
-import com.voluptaria.vlpt.service.PacoteService;
+import com.voluptaria.vlpt.model.entity.Passagem;
+import com.voluptaria.vlpt.service.PassagemService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,22 +15,23 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/pacotes")
+@RequestMapping("/api/v1/passagens")
 @RequiredArgsConstructor
-public class PacoteController {
+public class PassagemController {
 
-    private final PacoteService service;
+
+    private final PassagemService service;
 
     @GetMapping()
     public ResponseEntity get() {
-        List<Pacote> pacotes = service.getPacotes();
-        return ResponseEntity.ok(pacotes);
+        List<Passagem> passagens = service.getPassagens();
+        return ResponseEntity.ok(passagens);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{cnpj}")
     public ResponseEntity get(@PathVariable("id") Long id){
-        Optional<Pacote> pacote = service.getPacoteById(id);
-        return ResponseEntity.ok(pacote);
+        Optional<Passagem> passagem = service.getPassagemById(id);
+        return ResponseEntity.ok(passagem);
 
     }
 }
