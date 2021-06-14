@@ -3,25 +3,25 @@ package com.voluptaria.vlpt.service;
 //import com.voluptaria.vlpt.api.dto.ClienteDTO;
 import com.voluptaria.vlpt.model.Cliente;
 import com.voluptaria.vlpt.repository.ClienteRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class ClienteService {
 
-    private ClienteRepository repository;
-
-    public ClienteService(ClienteRepository repository){
-        this.repository = repository;
-    }
+    private final ClienteRepository repository;
 
     public List<Cliente> getClientes(){
         return repository.findAll();
     }
 
-    public Optional<Cliente> getClienteById(String cpf){
-        return repository.findById(cpf);
+    public Cliente getClienteById(Long id){
+
+        return repository.findById(id).orElseThrow(()-> new RuntimeException("Cliente não encontrado"));
     }
 }
