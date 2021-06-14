@@ -1,9 +1,8 @@
 package com.voluptaria.vlpt.service;
 
 //import com.voluptaria.vlpt.api.dto.ClienteDTO;
-import com.voluptaria.vlpt.model.entity.Cliente;
-import com.voluptaria.vlpt.model.repository.ClienteRepository;
-import org.hibernate.ObjectNotFoundException;
+import com.voluptaria.vlpt.model.Cliente;
+import com.voluptaria.vlpt.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,9 +1,8 @@
 package com.voluptaria.vlpt.service;
 
 //import com.voluptaria.vlpt.api.dto.FuncionarioDTO;
-import com.voluptaria.vlpt.model.entity.Funcionario;
-import com.voluptaria.vlpt.model.repository.FuncionarioRepository;
-import org.hibernate.ObjectNotFoundException;
+import com.voluptaria.vlpt.model.Funcionario;
+import com.voluptaria.vlpt.repository.FuncionarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

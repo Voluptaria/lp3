@@ -1,22 +1,22 @@
-package com.voluptaria.vlpt.model.entity;
+package com.voluptaria.vlpt.model;
 
+import com.voluptaria.vlpt.enums.TipoFuncionario;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Funcionario {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String cpf;
 
     private String name;
@@ -29,5 +29,6 @@ public class Funcionario {
     private String cidade;
     private String cep;
     private String senha;
-    //private TipoFuncionario tipo;
+    @Enumerated(EnumType.STRING)
+    private TipoFuncionario tipoFuncionario;
 }

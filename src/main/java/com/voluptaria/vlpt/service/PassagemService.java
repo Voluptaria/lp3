@@ -1,10 +1,8 @@
 package com.voluptaria.vlpt.service;
 
 //import com.voluptaria.vlpt.api.dto.PassagemDTO;
-import com.voluptaria.vlpt.model.entity.Passagem;
-import com.voluptaria.vlpt.model.repository.PassagemRepository;
-import org.hibernate.ObjectNotFoundException;
-import org.springframework.stereotype.Service;
+import com.voluptaria.vlpt.model.Passagem;
+import com.voluptaria.vlpt.repository.PassagemRepository;
 
 import java.util.List;
 import java.util.Optional;

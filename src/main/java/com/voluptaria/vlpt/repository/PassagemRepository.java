@@ -1,6 +1,6 @@
-package com.voluptaria.vlpt.model.repository;
+package com.voluptaria.vlpt.repository;
 
-import com.voluptaria.vlpt.model.entity.Passagem;
+import com.voluptaria.vlpt.model.Passagem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PassagemRepository extends JpaRepository<Passagem, Long> {

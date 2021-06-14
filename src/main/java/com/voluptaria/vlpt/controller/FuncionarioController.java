@@ -1,6 +1,6 @@
-package com.voluptaria.vlpt.api.controller;
+package com.voluptaria.vlpt.controller;
 
-import com.voluptaria.vlpt.model.entity.Funcionario;
+import com.voluptaria.vlpt.model.Funcionario;
 import com.voluptaria.vlpt.service.FuncionarioService;
 
 import lombok.RequiredArgsConstructor;

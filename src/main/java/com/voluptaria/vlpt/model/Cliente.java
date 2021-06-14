@@ -1,4 +1,4 @@
-package com.voluptaria.vlpt.model.entity;
+package com.voluptaria.vlpt.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,18 +14,21 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Empresa {
+public class Cliente {
 
     @Id
-    private String cnpj;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private String nome;
-    private String email;
+    private String cpf;
+
+    private String name;
     private String telefone;
+    private String email;
     private String logradouro;
     private String numero;
     private String complemento;
     private String uf;
-    private String localidade;
+    private String cidade;
     private String cep;
 }
