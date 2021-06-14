@@ -19,7 +19,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PassagemController {
 
-
     private final PassagemService service;
 
     @GetMapping()
@@ -28,7 +27,7 @@ public class PassagemController {
         return ResponseEntity.ok(passagens);
     }
 
-    @GetMapping("/{cnpj}")
+    @GetMapping("/{id}")
     public ResponseEntity get(@PathVariable("id") Long id){
         Optional<Passagem> passagem = service.getPassagemById(id);
         return ResponseEntity.ok(passagem);
