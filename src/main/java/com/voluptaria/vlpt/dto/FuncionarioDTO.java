@@ -1,5 +1,6 @@
 package com.voluptaria.vlpt.dto;
 
+import com.voluptaria.vlpt.model.Endereco;
 import com.voluptaria.vlpt.model.Funcionario;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,22 +30,7 @@ public class FuncionarioDTO {
     @NotEmpty(message = "Campo email não pode ser vazio")
     private String email;
 
-    @NotEmpty(message = "Campo logradouro não pode ser vazio")
-    private String logradouro;
-
-    @NotEmpty(message = "Campo numero não pode ser vazio")
-    private String numero;
-
-    private String complemento;
-
-    @NotEmpty(message = "Campo uf não pode ser vazio")
-    private String uf;
-
-    @NotEmpty(message = "Campo cidade não pode ser vazio")
-    private String cidade;
-
-    @NotEmpty(message = "Campo cep não pode ser vazio")
-    private String cep;
+    private Endereco endereco;
 
     private String tipoFuncionario;
 

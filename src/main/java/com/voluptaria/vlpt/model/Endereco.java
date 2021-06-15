@@ -3,34 +3,32 @@ package com.voluptaria.vlpt.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 
 @Entity
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Cliente {
+@NoArgsConstructor
+@Data
+public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @CPF
     @Column(nullable = false)
-    private String cpf;
+    private String logradouro;
 
     @Column(nullable = false)
-    private String nome;
+    private String numero;
+
+    private String complemento;
 
     @Column(nullable = false)
-    private String telefone;
+    private String uf;
 
-    @Email
     @Column(nullable = false)
-    private String email;
+    private String cidade;
 
-    @OneToOne
-    private Endereco endereco;
+    @Column(nullable = false)
+    private String cep;
 }

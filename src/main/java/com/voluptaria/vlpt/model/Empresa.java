@@ -33,22 +33,8 @@ public class Empresa {
     @Column(nullable = false)
     private String telefone;
 
-    @Column(nullable = false)
-    private String logradouro;
-
-    @Column(nullable = false)
-    private String numero;
-
-    private String complemento;
-
-    @Column(nullable = false)
-    private String uf;
-
-    @Column(nullable = false)
-    private String localidade;
-
-    @Column(nullable = false)
-    private String cep;
+    @OneToOne
+    private Endereco endereco;
 
     @Enumerated(EnumType.STRING)
     private TipoEmpresa tipoEmpresa;

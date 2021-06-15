@@ -1,6 +1,7 @@
 package com.voluptaria.vlpt.dto;
 
 import com.voluptaria.vlpt.model.Cliente;
+import com.voluptaria.vlpt.model.Endereco;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,22 +32,7 @@ public class ClienteDTO {
     @NotEmpty(message = "Campo email não pode ser vazio")
     private String email;
 
-    @NotEmpty(message = "Campo logradouro não pode ser vazio")
-    private String logradouro;
-
-    @NotEmpty(message = "Campo numero não pode ser vazio")
-    private String numero;
-
-    private String complemento;
-
-    @NotEmpty(message = "Campo uf não pode ser vazio")
-    private String uf;
-
-    @NotEmpty(message = "Campo cidade não pode ser vazio")
-    private String cidade;
-
-    @NotEmpty(message = "Campo cep não pode ser vazio")
-    private String cep;
+    private Endereco endereco;
 
     public static ClienteDTO createDTO(Cliente cliente) {
         ModelMapper modelMapper = new ModelMapper();

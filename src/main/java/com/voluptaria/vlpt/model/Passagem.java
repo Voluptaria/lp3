@@ -28,6 +28,7 @@ public class Passagem {
 
     @ManyToOne
     private Pacote pacote;
+
     @ManyToOne
     private Empresa empresa;
 }

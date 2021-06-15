@@ -32,22 +32,8 @@ public class Funcionario {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
-    private String logradouro;
-
-    @Column(nullable = false)
-    private String numero;
-
-    private String complemento;
-
-    @Column(nullable = false)
-    private String uf;
-
-    @Column(nullable = false)
-    private String cidade;
-
-    @Column(nullable = false)
-    private String cep;
+    @OneToOne
+    private Endereco endereco;
 
     @Column(nullable = false)
     private String senha;
