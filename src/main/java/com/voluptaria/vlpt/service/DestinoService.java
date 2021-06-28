@@ -1,30 +1,25 @@
 package com.voluptaria.vlpt.service;
 
-import com.voluptaria.vlpt.dto.DestinoDTO;
 import com.voluptaria.vlpt.model.Destino;
 import com.voluptaria.vlpt.repository.DestinoRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class DestinoService {
 
     private final DestinoRepository repository;
 
-    public List<DestinoDTO> getDestinos(){
-
-        return repository.findAll()
-                .stream().map(DestinoDTO::createDTO).collect(Collectors.toList());
+    public List<Destino> getDestinos(){
+        return repository.findAll();
     }
 
-    public DestinoDTO getDestinoById(long id){
-        Destino destino = repository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Destino não encontrado"));
-        return DestinoDTO.createDTO(destino);
+    public Optional<Destino> getDestinoById(Long id){
+        return repository.findById(id);
     }
 }

@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.List;
 
 @Entity
 @Data
@@ -33,9 +34,17 @@ public class Empresa {
     @Column(nullable = false)
     private String telefone;
 
+    @Enumerated(EnumType.STRING)
+    private TipoEmpresa tipoEmpresa;
+
     @OneToOne
     private Endereco endereco;
 
-    @Enumerated(EnumType.STRING)
-    private TipoEmpresa tipoEmpresa;
+    @OneToMany(mappedBy = "empresa")
+    private List<Destino> destinos;
+
+    @OneToMany(mappedBy = "empresa")
+    private List<Passagem> passagens;
+
+
 }

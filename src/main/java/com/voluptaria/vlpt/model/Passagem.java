@@ -1,5 +1,6 @@
 package com.voluptaria.vlpt.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,8 +28,12 @@ public class Passagem {
     private String dataVolta;
 
     @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "pacote_id")
     private Pacote pacote;
 
     @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "empresa_id")
     private Empresa empresa;
 }

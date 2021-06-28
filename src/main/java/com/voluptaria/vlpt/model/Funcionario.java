@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.List;
 
 @Entity
 @Data
@@ -40,4 +41,7 @@ public class Funcionario {
 
     @Enumerated(EnumType.STRING)
     private TipoFuncionario tipoFuncionario;
+
+    @OneToMany(mappedBy = "funcionario")
+    private List<Pacote> pacotes;
 }

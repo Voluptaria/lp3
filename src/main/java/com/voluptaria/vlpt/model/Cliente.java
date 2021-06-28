@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.List;
 
 @Entity
 @Data
@@ -33,4 +34,7 @@ public class Cliente {
 
     @OneToOne
     private Endereco endereco;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Pacote> pacotes;
 }

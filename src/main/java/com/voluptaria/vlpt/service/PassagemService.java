@@ -1,33 +1,26 @@
 package com.voluptaria.vlpt.service;
 
-//import com.voluptaria.vlpt.api.dto.PassagemDTO;
-
-import com.voluptaria.vlpt.dto.PassagemDTO;
 import com.voluptaria.vlpt.model.Passagem;
 import com.voluptaria.vlpt.repository.PassagemRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PassagemService {
 
     private final PassagemRepository repository;
 
-    public List<PassagemDTO> getPassagens(){
+    public List<Passagem> getPassagens(){
+        return repository.findAll();
 
-        return repository.findAll()
-                .stream().map(PassagemDTO::createDTO).collect(Collectors.toList());
     }
 
-    public PassagemDTO getPassagemById(Long id){
-
-        Passagem passagem = repository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Passagem não encontrado"));
-        return PassagemDTO.createDTO(passagem);
+    public Optional<Passagem> getPassagemById(Long id){
+        return repository.findById(id);
     }
 }
