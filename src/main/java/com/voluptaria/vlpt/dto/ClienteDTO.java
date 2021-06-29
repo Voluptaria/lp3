@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
 import javax.persistence.Column;
+import javax.validation.constraints.NotEmpty;
 
 @Data
 @NoArgsConstructor
@@ -16,9 +17,17 @@ import javax.persistence.Column;
 @Builder
 public class ClienteDTO {
     private Long id;
+
+    @NotEmpty(message = "Campo cpf não pode ser vazio")
     private String cpf;
+
+    @NotEmpty(message = "Campo nome não pode ser vazio")
     private String nome;
+
+    @NotEmpty(message = "Campo telefone não pode ser vazio")
     private String telefone;
+
+    @NotEmpty(message = "Campo email não pode ser vazio")
     private String email;
     private String enderecoLogradouro;
     private String enderecoNumero;
