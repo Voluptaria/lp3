@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
+import javax.persistence.Column;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,12 +20,23 @@ public class ClienteDTO {
     private String nome;
     private String telefone;
     private String email;
-    private Endereco endereco;
+    private String enderecoLogradouro;
+    private String enderecoNumero;
+    private String enderecoComplemento;
+    private String enderecoUf;
+    private String enderecoCidade;
+    private String enderecoCep;
 
     public static ClienteDTO createDTO(Cliente cliente) {
         ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(cliente, ClienteDTO.class);
+        ClienteDTO clienteDTO = modelMapper.map(cliente, ClienteDTO.class);
+        assert clienteDTO.getEnderecoLogradouro().equals(cliente.getEndereco().getLogradouro());
+        assert clienteDTO.getEnderecoNumero().equals(cliente.getEndereco().getNumero());
+        assert clienteDTO.getEnderecoComplemento().equals(cliente.getEndereco().getComplemento());
+        assert clienteDTO.getEnderecoUf().equals(cliente.getEndereco().getUf());
+        assert clienteDTO.getEnderecoCidade().equals(cliente.getEndereco().getCidade());
+        assert clienteDTO.getEnderecoCep().equals(cliente.getEndereco().getCep());
+        return clienteDTO;
     }
-
 
 }

@@ -18,8 +18,13 @@ public class FuncionarioDTO {
     private String nome;
     private String telefone;
     private String email;
-    private Endereco endereco;
     private String tipoFuncionario;
+    private String enderecoLogradouro;
+    private String enderecoNumero;
+    private String enderecoComplemento;
+    private String enderecoUf;
+    private String enderecoCidade;
+    private String enderecoCep;
 
     public static FuncionarioDTO createDTO(Funcionario funcionario) {
         ModelMapper modelMapper = new ModelMapper();

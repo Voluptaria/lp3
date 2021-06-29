@@ -18,8 +18,13 @@ public class EmpresaDTO {
     private String nome;
     private String telefone;
     private String email;
-    private Endereco endereco;
     private String tipoEmpresa;
+    private String enderecoLogradouro;
+    private String enderecoNumero;
+    private String enderecoComplemento;
+    private String enderecoUf;
+    private String enderecoCidade;
+    private String enderecoCep;
 
     public static EmpresaDTO createDTO(Empresa empresa) {
         ModelMapper modelMapper = new ModelMapper();
