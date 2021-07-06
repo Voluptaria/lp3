@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -57,6 +58,21 @@ public class ClienteController {
             Cliente clienteSalvo = service.save(cliente);
             return ResponseEntity.status(HttpStatus.CREATED).body(clienteSalvo);
         }catch (RegraNegocioException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity put(@PathVariable Long id, ClienteDTO clienteDTO){
+        if(service.getClienteById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente não Encontrado");
+        }
+        try {
+            Cliente cliente = convertToModel(clienteDTO);
+            cliente.setId(id);
+            service.update(cliente);
+            return ResponseEntity.ok(cliente);
+        }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

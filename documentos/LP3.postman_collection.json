@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "534b0603-c77d-4227-bdc0-8eeccfa039b2",
+		"_postman_id": "ba7c5eef-6674-4704-939f-4c6b2e50528b",
 		"name": "LP3",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -454,7 +454,7 @@
 			"response": []
 		},
 		{
-			"name": "Criar Clientes",
+			"name": "Criar Cliente",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -652,7 +652,7 @@
 			"response": []
 		},
 		{
-			"name": "Criar Pacotes",
+			"name": "Criar Pacote",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -720,6 +720,343 @@
 						{
 							"key": "origem",
 							"value": "Juiz de Fora"
+						},
+						{
+							"key": "destino",
+							"value": "Ibitipoca"
+						},
+						{
+							"key": "dataIda",
+							"value": "2020-01-01"
+						},
+						{
+							"key": "dataVolta",
+							"value": "2021-01-01"
+						},
+						{
+							"key": "idPacote",
+							"value": "1"
+						},
+						{
+							"key": "idEmpresa",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Destino",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/destinos/1?dataInicial=2022-01-09&dataFinal=2022-01-11&idPacote=1&idEmpresa=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"destinos",
+						"1"
+					],
+					"query": [
+						{
+							"key": "dataInicial",
+							"value": "2022-01-09"
+						},
+						{
+							"key": "dataFinal",
+							"value": "2022-01-11"
+						},
+						{
+							"key": "idPacote",
+							"value": "1"
+						},
+						{
+							"key": "idEmpresa",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Cliente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/clientes/1?cpf=27390527668&nome=PELE&telefone=322123&email=LEO@GMAIL&enderecoLogradouro=RUA ABC&enderecoNumero=10&enderecoComplemento=null&enderecoUf=MG&enderecoCidade=JUIZ DE FORA&enderecoCep=36090-000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"clientes",
+						"1"
+					],
+					"query": [
+						{
+							"key": "cpf",
+							"value": "27390527668"
+						},
+						{
+							"key": "nome",
+							"value": "PELE"
+						},
+						{
+							"key": "telefone",
+							"value": "322123"
+						},
+						{
+							"key": "email",
+							"value": "LEO@GMAIL"
+						},
+						{
+							"key": "enderecoLogradouro",
+							"value": "RUA ABC"
+						},
+						{
+							"key": "enderecoNumero",
+							"value": "10"
+						},
+						{
+							"key": "enderecoComplemento",
+							"value": "null"
+						},
+						{
+							"key": "enderecoUf",
+							"value": "MG"
+						},
+						{
+							"key": "enderecoCidade",
+							"value": "JUIZ DE FORA"
+						},
+						{
+							"key": "enderecoCep",
+							"value": "36090-000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Empresa",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/empresas/1?cnpj=47741938000126&nome=Amarela&telefone=988722915&email=azul@gmail.com&tipoEmpresa=TRANSPORTE&enderecoLogradouro=Rua Bernardo Mascarenhas&enderecoNumero=42&enderecoComplemento=Fundos&enderecoUf=MG&enderecoCidade=Juiz de Fora&enderecoCep=36080001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"empresas",
+						"1"
+					],
+					"query": [
+						{
+							"key": "cnpj",
+							"value": "47741938000126"
+						},
+						{
+							"key": "nome",
+							"value": "Amarela"
+						},
+						{
+							"key": "telefone",
+							"value": "988722915"
+						},
+						{
+							"key": "email",
+							"value": "azul@gmail.com"
+						},
+						{
+							"key": "tipoEmpresa",
+							"value": "TRANSPORTE"
+						},
+						{
+							"key": "enderecoLogradouro",
+							"value": "Rua Bernardo Mascarenhas"
+						},
+						{
+							"key": "enderecoNumero",
+							"value": "42"
+						},
+						{
+							"key": "enderecoComplemento",
+							"value": "Fundos"
+						},
+						{
+							"key": "enderecoUf",
+							"value": "MG"
+						},
+						{
+							"key": "enderecoCidade",
+							"value": "Juiz de Fora"
+						},
+						{
+							"key": "enderecoCep",
+							"value": "36080001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Funcionario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/clientes/1?cpf=253.767.004-37&nome=Luiza&telefone=(61) 98436-6024&email=lorenafatimagalvao-94@infolink.com.br&tipoFuncionario=GERENTE&enderecoLogradouro=Quadra QS 118 Conjunto 6&enderecoNumero=579&enderecoComplemento=null&enderecoUf=DF&enderecoCidade=Brasília&enderecoCep=Samambaia Sul (Samambaia)",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"clientes",
+						"1"
+					],
+					"query": [
+						{
+							"key": "cpf",
+							"value": "253.767.004-37"
+						},
+						{
+							"key": "nome",
+							"value": "Luiza"
+						},
+						{
+							"key": "telefone",
+							"value": "(61) 98436-6024"
+						},
+						{
+							"key": "email",
+							"value": "lorenafatimagalvao-94@infolink.com.br"
+						},
+						{
+							"key": "tipoFuncionario",
+							"value": "GERENTE"
+						},
+						{
+							"key": "enderecoLogradouro",
+							"value": "Quadra QS 118 Conjunto 6"
+						},
+						{
+							"key": "enderecoNumero",
+							"value": "579"
+						},
+						{
+							"key": "enderecoComplemento",
+							"value": "null"
+						},
+						{
+							"key": "enderecoUf",
+							"value": "DF"
+						},
+						{
+							"key": "enderecoCidade",
+							"value": "Brasília"
+						},
+						{
+							"key": "enderecoCep",
+							"value": "Samambaia Sul (Samambaia)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Pacote",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cpf\": \"101872139\",\r\n    \"name\": \"Leo\",\r\n    \"email\": \"leo@email\",\r\n    \"phone\": \"99123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/pacotes/1?idCliente=1&nomeCliente=Mario&idFuncionario=1&nomeFuncionario=José",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"pacotes",
+						"1"
+					],
+					"query": [
+						{
+							"key": "idCliente",
+							"value": "1"
+						},
+						{
+							"key": "nomeCliente",
+							"value": "Mario"
+						},
+						{
+							"key": "idFuncionario",
+							"value": "1"
+						},
+						{
+							"key": "nomeFuncionario",
+							"value": "José"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Passagem",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/passagens/1?origem=Rio de janeiro&destino=Ibitipoca&dataIda=2020-01-01&dataVolta=2021-01-01&idPacote=1&idEmpresa=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"passagens",
+						"1"
+					],
+					"query": [
+						{
+							"key": "origem",
+							"value": "Rio de janeiro"
 						},
 						{
 							"key": "destino",

@@ -1,5 +1,6 @@
 package com.voluptaria.vlpt.controller;
 
+import com.voluptaria.vlpt.dto.ClienteDTO;
 import com.voluptaria.vlpt.dto.DestinoDTO;
 import com.voluptaria.vlpt.dto.PacoteDTO;
 import com.voluptaria.vlpt.dto.PassagemDTO;
@@ -72,6 +73,21 @@ public class PacoteController {
             Pacote pacoteSalvo = service.save(pacote);
             return ResponseEntity.status(HttpStatus.CREATED).body(pacoteSalvo);
         }catch (RegraNegocioException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity put(@PathVariable Long id, PacoteDTO pacoteDTO){
+        if(service.getPacoteById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pacote não Encontrado");
+        }
+        try {
+            Pacote pacote = convertToModel(pacoteDTO);
+            pacote.setId(id);
+            service.update(pacote);
+            return ResponseEntity.ok(pacote);
+        }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

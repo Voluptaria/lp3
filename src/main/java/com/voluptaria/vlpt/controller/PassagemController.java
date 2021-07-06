@@ -1,7 +1,9 @@
 package com.voluptaria.vlpt.controller;
 
 import com.voluptaria.vlpt.dto.PassagemDTO;
+import com.voluptaria.vlpt.dto.PassagemDTO;
 import com.voluptaria.vlpt.exception.RegraNegocioException;
+import com.voluptaria.vlpt.model.Passagem;
 import com.voluptaria.vlpt.model.Empresa;
 import com.voluptaria.vlpt.model.Pacote;
 import com.voluptaria.vlpt.model.Passagem;
@@ -49,6 +51,21 @@ public class PassagemController {
             Passagem passagemSalvo = service.save(passagem);
             return ResponseEntity.status(HttpStatus.CREATED).body(passagemSalvo);
         }catch (RegraNegocioException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity put(@PathVariable Long id, PassagemDTO passagemDTO){
+        if(service.getPassagemById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Passagem não Encontrado");
+        }
+        try {
+            Passagem passagem = convertToModel(passagemDTO);
+            passagem.setId(id);
+            service.update(passagem);
+            return ResponseEntity.ok(passagem);
+        }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

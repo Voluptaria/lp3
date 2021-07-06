@@ -1,7 +1,9 @@
 package com.voluptaria.vlpt.controller;
 
 import com.voluptaria.vlpt.dto.DestinoDTO;
+import com.voluptaria.vlpt.dto.DestinoDTO;
 import com.voluptaria.vlpt.exception.RegraNegocioException;
+import com.voluptaria.vlpt.model.Destino;
 import com.voluptaria.vlpt.model.Destino;
 import com.voluptaria.vlpt.model.Empresa;
 import com.voluptaria.vlpt.model.Pacote;
@@ -50,6 +52,21 @@ public class DestinoController {
             Destino destinoSalvo = service.save(destino);
             return ResponseEntity.status(HttpStatus.CREATED).body(destinoSalvo);
         }catch (RegraNegocioException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity put(@PathVariable Long id, DestinoDTO destinoDTO){
+        if(service.getDestinoById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Destino não Encontrado");
+        }
+        try {
+            Destino destino = convertToModel(destinoDTO);
+            destino.setId(id);
+            service.update(destino);
+            return ResponseEntity.ok(destino);
+        }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

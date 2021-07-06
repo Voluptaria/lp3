@@ -2,6 +2,8 @@ package com.voluptaria.vlpt.service;
 
 import com.voluptaria.vlpt.model.Empresa;
 import com.voluptaria.vlpt.model.Empresa;
+import com.voluptaria.vlpt.model.Empresa;
+import com.voluptaria.vlpt.model.Empresa;
 import com.voluptaria.vlpt.repository.EmpresaRepository;
 import com.voluptaria.vlpt.repository.EnderecoRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -32,6 +35,14 @@ public class EmpresaService {
         validar(empresa);
         empresa.setEndereco(enderecoRepository.save(empresa.getEndereco()));
         return repository.save(empresa);
+    }
+
+    @Transactional
+    public Empresa update(Empresa empresa) {
+        Objects.requireNonNull(empresa.getId());
+        Empresa empresaSalvo = repository.getById(empresa.getId());
+        empresa.getEndereco().setId(empresaSalvo.getEndereco().getId());
+        return save(empresa);
     }
 
     private void validar(Empresa empresa) {

@@ -1,5 +1,7 @@
 package com.voluptaria.vlpt.service;
 
+import com.voluptaria.vlpt.model.Cliente;
+import com.voluptaria.vlpt.model.Funcionario;
 import com.voluptaria.vlpt.model.Funcionario;
 import com.voluptaria.vlpt.model.Funcionario;
 import com.voluptaria.vlpt.repository.EnderecoRepository;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -32,6 +35,14 @@ public class FuncionarioService {
         validar(funcionario);
         funcionario.setEndereco(enderecoRepository.save(funcionario.getEndereco()));
         return repository.save(funcionario);
+    }
+
+    @Transactional
+    public Funcionario update(Funcionario funcionario) {
+        Objects.requireNonNull(funcionario.getId());
+        Funcionario funcionarioSalvo = repository.getById(funcionario.getId());
+        funcionario.getEndereco().setId(funcionarioSalvo.getEndereco().getId());
+        return save(funcionario);
     }
 
     private void validar(Funcionario funcionario) {

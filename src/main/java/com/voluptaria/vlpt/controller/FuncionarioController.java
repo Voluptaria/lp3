@@ -1,10 +1,10 @@
 package com.voluptaria.vlpt.controller;
 
+import com.voluptaria.vlpt.dto.*;
 import com.voluptaria.vlpt.dto.FuncionarioDTO;
 import com.voluptaria.vlpt.dto.FuncionarioDTO;
-import com.voluptaria.vlpt.dto.FuncionarioDTO;
-import com.voluptaria.vlpt.dto.PacoteDTO;
 import com.voluptaria.vlpt.exception.RegraNegocioException;
+import com.voluptaria.vlpt.model.Funcionario;
 import com.voluptaria.vlpt.model.Funcionario;
 import com.voluptaria.vlpt.model.Funcionario;
 import com.voluptaria.vlpt.model.Funcionario;
@@ -59,6 +59,21 @@ public class FuncionarioController {
             Funcionario funcionarioSalvo = service.save(funcionario);
             return ResponseEntity.status(HttpStatus.CREATED).body(funcionarioSalvo);
         }catch (RegraNegocioException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity put(@PathVariable Long id, FuncionarioDTO funcionarioDTO){
+        if(service.getFuncionarioById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Funcionario não Encontrado");
+        }
+        try {
+            Funcionario funcionario = convertToModel(funcionarioDTO);
+            funcionario.setId(id);
+            service.update(funcionario);
+            return ResponseEntity.ok(funcionario);
+        }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

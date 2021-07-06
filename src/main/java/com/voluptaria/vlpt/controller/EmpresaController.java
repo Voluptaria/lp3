@@ -1,10 +1,9 @@
 package com.voluptaria.vlpt.controller;
 
+import com.voluptaria.vlpt.dto.*;
 import com.voluptaria.vlpt.dto.EmpresaDTO;
-import com.voluptaria.vlpt.dto.DestinoDTO;
-import com.voluptaria.vlpt.dto.EmpresaDTO;
-import com.voluptaria.vlpt.dto.PassagemDTO;
 import com.voluptaria.vlpt.exception.RegraNegocioException;
+import com.voluptaria.vlpt.model.Empresa;
 import com.voluptaria.vlpt.model.Destino;
 import com.voluptaria.vlpt.model.Empresa;
 import com.voluptaria.vlpt.model.Empresa;
@@ -69,6 +68,21 @@ public class EmpresaController {
             Empresa empresaSalvo = service.save(empresa);
             return ResponseEntity.status(HttpStatus.CREATED).body(empresaSalvo);
         }catch (RegraNegocioException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity put(@PathVariable Long id, EmpresaDTO empresaDTO){
+        if(service.getEmpresaById(id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa não Encontrado");
+        }
+        try {
+            Empresa empresa = convertToModel(empresaDTO);
+            empresa.setId(id);
+            service.update(empresa);
+            return ResponseEntity.ok(empresa);
+        }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

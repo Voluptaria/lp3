@@ -2,6 +2,7 @@ package com.voluptaria.vlpt.service;
 
 import com.voluptaria.vlpt.exception.RegraNegocioException;
 import com.voluptaria.vlpt.model.Destino;
+import com.voluptaria.vlpt.model.Destino;
 import com.voluptaria.vlpt.repository.DestinoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -31,6 +33,12 @@ public class DestinoService {
     public Destino save(Destino destino) {
         validar(destino);
         return repository.save(destino);
+    }
+
+    @Transactional
+    public Destino update(Destino destino) {
+        Objects.requireNonNull(destino.getId());
+        return save(destino);
     }
 
     private void validar(Destino destino) {
