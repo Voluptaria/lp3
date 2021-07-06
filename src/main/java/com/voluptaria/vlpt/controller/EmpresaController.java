@@ -1,18 +1,20 @@
 package com.voluptaria.vlpt.controller;
 
+import com.voluptaria.vlpt.dto.EmpresaDTO;
 import com.voluptaria.vlpt.dto.DestinoDTO;
 import com.voluptaria.vlpt.dto.EmpresaDTO;
 import com.voluptaria.vlpt.dto.PassagemDTO;
+import com.voluptaria.vlpt.exception.RegraNegocioException;
+import com.voluptaria.vlpt.model.Destino;
+import com.voluptaria.vlpt.model.Empresa;
 import com.voluptaria.vlpt.model.Empresa;
 import com.voluptaria.vlpt.service.EmpresaService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -58,5 +60,21 @@ public class EmpresaController {
         }
         return ResponseEntity.ok(empresa.get().getPassagens()
                 .stream().map(PassagemDTO::createDTO).collect(Collectors.toList()));
+    }
+
+    @PostMapping
+    public ResponseEntity post(EmpresaDTO empresaDTO){
+        try {
+            Empresa empresa = convertToModel(empresaDTO);
+            Empresa empresaSalvo = service.save(empresa);
+            return ResponseEntity.status(HttpStatus.CREATED).body(empresaSalvo);
+        }catch (RegraNegocioException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    private Empresa convertToModel(EmpresaDTO empresaDTO){
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(empresaDTO, Empresa.class);
     }
 }

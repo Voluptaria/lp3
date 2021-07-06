@@ -6,19 +6,21 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 import org.modelmapper.ModelMapper;
 
 import javax.persistence.Column;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class ClienteDTO {
     private Long id;
 
     @NotEmpty(message = "Campo cpf não pode ser vazio")
+    @CPF
     private String cpf;
 
     @NotEmpty(message = "Campo nome não pode ser vazio")
@@ -28,6 +30,7 @@ public class ClienteDTO {
     private String telefone;
 
     @NotEmpty(message = "Campo email não pode ser vazio")
+    @Email
     private String email;
     private String enderecoLogradouro;
     private String enderecoNumero;

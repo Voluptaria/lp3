@@ -1,17 +1,20 @@
 package com.voluptaria.vlpt.controller;
 
 import com.voluptaria.vlpt.dto.FuncionarioDTO;
+import com.voluptaria.vlpt.dto.FuncionarioDTO;
+import com.voluptaria.vlpt.dto.FuncionarioDTO;
 import com.voluptaria.vlpt.dto.PacoteDTO;
+import com.voluptaria.vlpt.exception.RegraNegocioException;
+import com.voluptaria.vlpt.model.Funcionario;
+import com.voluptaria.vlpt.model.Funcionario;
 import com.voluptaria.vlpt.model.Funcionario;
 import com.voluptaria.vlpt.service.FuncionarioService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,5 +50,21 @@ public class FuncionarioController {
         }
         return ResponseEntity.ok(funcionario.get().getPacotes()
                 .stream().map(PacoteDTO::createDTO).collect(Collectors.toList()));
+    }
+
+    @PostMapping
+    public ResponseEntity post(FuncionarioDTO funcionarioDTO){
+        try {
+            Funcionario funcionario = convertToModel(funcionarioDTO);
+            Funcionario funcionarioSalvo = service.save(funcionario);
+            return ResponseEntity.status(HttpStatus.CREATED).body(funcionarioSalvo);
+        }catch (RegraNegocioException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    private Funcionario convertToModel(FuncionarioDTO funcionarioDTO){
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(funcionarioDTO, Funcionario.class);
     }
 }

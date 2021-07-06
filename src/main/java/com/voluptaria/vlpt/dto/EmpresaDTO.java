@@ -6,18 +6,20 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CNPJ;
 import org.modelmapper.ModelMapper;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class EmpresaDTO {
     private Long id;
 
     @NotEmpty(message = "Campo cnpj não pode ser vazio")
+    @CNPJ
     private String cnpj;
 
     @NotEmpty(message = "Campo nome não pode ser vazio")
@@ -27,6 +29,7 @@ public class EmpresaDTO {
     private String telefone;
 
     @NotEmpty(message = "Campo email não pode ser vazio")
+    @Email
     private String email;
 
     private String tipoEmpresa;

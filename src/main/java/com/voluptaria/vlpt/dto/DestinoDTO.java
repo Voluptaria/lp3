@@ -12,7 +12,6 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class DestinoDTO {
     private Long id;
 

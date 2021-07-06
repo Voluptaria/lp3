@@ -1,17 +1,19 @@
 package com.voluptaria.vlpt.controller;
 
 import com.voluptaria.vlpt.dto.PassagemDTO;
+import com.voluptaria.vlpt.exception.RegraNegocioException;
+import com.voluptaria.vlpt.model.Empresa;
+import com.voluptaria.vlpt.model.Pacote;
 import com.voluptaria.vlpt.model.Passagem;
+import com.voluptaria.vlpt.service.EmpresaService;
+import com.voluptaria.vlpt.service.PacoteService;
 import com.voluptaria.vlpt.service.PassagemService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +25,8 @@ import java.util.stream.Collectors;
 public class PassagemController {
 
     private final PassagemService service;
+    private final PacoteService pacoteService;
+    private final EmpresaService empresaService;
 
     @GetMapping()
     public ResponseEntity get(){
@@ -37,6 +41,38 @@ public class PassagemController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Passagem não encontrada");
         }
         return ResponseEntity.ok(PassagemDTO.createDTO(passagem.get()));
-
     }
+    @PostMapping
+    public ResponseEntity post(PassagemDTO passagemDTO){
+        try {
+            Passagem passagem = convertToModel(passagemDTO);
+            Passagem passagemSalvo = service.save(passagem);
+            return ResponseEntity.status(HttpStatus.CREATED).body(passagemSalvo);
+        }catch (RegraNegocioException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    private Passagem convertToModel(PassagemDTO passagemDTO){
+        ModelMapper modelMapper = new ModelMapper();
+        Passagem passagem = modelMapper.map(passagemDTO, Passagem.class);
+        if(passagemDTO.getIdPacote() != null){
+            Optional<Pacote> pacote = pacoteService.getPacoteById(passagemDTO.getIdPacote());
+            if(pacote.isEmpty()){
+                passagem.setPacote(null);
+            }else {
+                passagem.setPacote(pacote.get());
+            }
+        }
+        if(passagemDTO.getIdEmpresa() != null){
+            Optional<Empresa> empresa = empresaService.getEmpresaById(passagemDTO.getIdEmpresa());
+            if(empresa.isEmpty()){
+                passagem.setEmpresa(null);
+            }else {
+                passagem.setEmpresa(empresa.get());
+            }
+        }
+        return passagem;
+    }
+
 }

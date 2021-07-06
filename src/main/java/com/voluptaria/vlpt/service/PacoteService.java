@@ -1,11 +1,13 @@
 package com.voluptaria.vlpt.service;
 
 import com.voluptaria.vlpt.model.Pacote;
+import com.voluptaria.vlpt.model.Pacote;
 import com.voluptaria.vlpt.repository.PacoteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,5 +23,14 @@ public class PacoteService {
 
     public Optional<Pacote> getPacoteById(Long id){
        return repository.findById(id);
+    }
+
+    @Transactional
+    public Pacote save(Pacote pacote) {
+        validar(pacote);
+        return repository.save(pacote);
+    }
+
+    private void validar(Pacote pacote) {
     }
 }

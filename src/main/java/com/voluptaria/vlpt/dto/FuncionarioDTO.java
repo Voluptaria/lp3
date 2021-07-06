@@ -1,22 +1,23 @@
 package com.voluptaria.vlpt.dto;
 
-import com.voluptaria.vlpt.model.Endereco;
 import com.voluptaria.vlpt.model.Funcionario;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 import org.modelmapper.ModelMapper;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class FuncionarioDTO {
     private Long id;
+
     @NotEmpty(message = "Campo cpf não pode ser vazio")
+    @CPF
     private String cpf;
 
     @NotEmpty(message = "Campo nome não pode ser vazio")
@@ -26,6 +27,7 @@ public class FuncionarioDTO {
     private String telefone;
 
     @NotEmpty(message = "Campo email não pode ser vazio")
+    @Email
     private String email;
 
     private String tipoFuncionario;
