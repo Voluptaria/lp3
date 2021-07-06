@@ -2,6 +2,7 @@ package com.voluptaria.vlpt.service;
 
 import com.voluptaria.vlpt.model.Funcionario;
 import com.voluptaria.vlpt.model.Funcionario;
+import com.voluptaria.vlpt.repository.EnderecoRepository;
 import com.voluptaria.vlpt.repository.FuncionarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import java.util.Optional;
 public class FuncionarioService {
 
     private final FuncionarioRepository repository;
+    private final EnderecoRepository enderecoRepository;
 
     public List<Funcionario> getFuncionarios(){
         return repository.findAll();
@@ -28,6 +30,7 @@ public class FuncionarioService {
     @Transactional
     public Funcionario save(Funcionario funcionario) {
         validar(funcionario);
+        funcionario.setEndereco(enderecoRepository.save(funcionario.getEndereco()));
         return repository.save(funcionario);
     }
 

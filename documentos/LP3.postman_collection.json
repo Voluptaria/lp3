@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5dafc417-65b4-4e69-a7a0-0e5219c927c3",
+		"_postman_id": "534b0603-c77d-4227-bdc0-8eeccfa039b2",
 		"name": "LP3",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -409,6 +409,338 @@
 						"pacotes",
 						"1",
 						"passagens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Destino",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/destinos?dataInicial=2022-01-08&dataFinal=2022-01-10&idPacote=1&idEmpresa=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"destinos"
+					],
+					"query": [
+						{
+							"key": "dataInicial",
+							"value": "2022-01-08"
+						},
+						{
+							"key": "dataFinal",
+							"value": "2022-01-10"
+						},
+						{
+							"key": "idPacote",
+							"value": "1"
+						},
+						{
+							"key": "idEmpresa",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Clientes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/clientes?cpf=27390527668&nome=LEO&telefone=322123&email=LEO@GMAIL&enderecoLogradouro=RUA ABC&enderecoNumero=10&enderecoComplemento=null&enderecoUf=MG&enderecoCidade=JUIZ DE FORA&enderecoCep=36090-000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"clientes"
+					],
+					"query": [
+						{
+							"key": "cpf",
+							"value": "27390527668"
+						},
+						{
+							"key": "nome",
+							"value": "LEO"
+						},
+						{
+							"key": "telefone",
+							"value": "322123"
+						},
+						{
+							"key": "email",
+							"value": "LEO@GMAIL"
+						},
+						{
+							"key": "enderecoLogradouro",
+							"value": "RUA ABC"
+						},
+						{
+							"key": "enderecoNumero",
+							"value": "10"
+						},
+						{
+							"key": "enderecoComplemento",
+							"value": "null"
+						},
+						{
+							"key": "enderecoUf",
+							"value": "MG"
+						},
+						{
+							"key": "enderecoCidade",
+							"value": "JUIZ DE FORA"
+						},
+						{
+							"key": "enderecoCep",
+							"value": "36090-000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Empresa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/empresas?cnpj=47741938000126&nome=Azul&telefone=988722915&email=azul@gmail.com&tipoEmpresa=TRANSPORTE&enderecoLogradouro=Rua Bernardo Mascarenhas&enderecoNumero=42&enderecoComplemento=Fundos&enderecoUf=MG&enderecoCidade=Juiz de Fora&enderecoCep=36080001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"empresas"
+					],
+					"query": [
+						{
+							"key": "cnpj",
+							"value": "47741938000126"
+						},
+						{
+							"key": "nome",
+							"value": "Azul"
+						},
+						{
+							"key": "telefone",
+							"value": "988722915"
+						},
+						{
+							"key": "email",
+							"value": "azul@gmail.com"
+						},
+						{
+							"key": "tipoEmpresa",
+							"value": "TRANSPORTE"
+						},
+						{
+							"key": "enderecoLogradouro",
+							"value": "Rua Bernardo Mascarenhas"
+						},
+						{
+							"key": "enderecoNumero",
+							"value": "42"
+						},
+						{
+							"key": "enderecoComplemento",
+							"value": "Fundos"
+						},
+						{
+							"key": "enderecoUf",
+							"value": "MG"
+						},
+						{
+							"key": "enderecoCidade",
+							"value": "Juiz de Fora"
+						},
+						{
+							"key": "enderecoCep",
+							"value": "36080001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Funcionário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/clientes/?cpf=253.767.004-37&nome=Lorena Fátima Galvão&telefone=(61) 98436-6024&email=lorenafatimagalvao-94@infolink.com.br&tipoFuncionario=GERENTE&enderecoLogradouro=Quadra QS 118 Conjunto 6&enderecoNumero=579&enderecoComplemento=null&enderecoUf=DF&enderecoCidade=Brasília&enderecoCep=Samambaia Sul (Samambaia)",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"clientes",
+						""
+					],
+					"query": [
+						{
+							"key": "cpf",
+							"value": "253.767.004-37"
+						},
+						{
+							"key": "nome",
+							"value": "Lorena Fátima Galvão"
+						},
+						{
+							"key": "telefone",
+							"value": "(61) 98436-6024"
+						},
+						{
+							"key": "email",
+							"value": "lorenafatimagalvao-94@infolink.com.br"
+						},
+						{
+							"key": "tipoFuncionario",
+							"value": "GERENTE"
+						},
+						{
+							"key": "enderecoLogradouro",
+							"value": "Quadra QS 118 Conjunto 6"
+						},
+						{
+							"key": "enderecoNumero",
+							"value": "579"
+						},
+						{
+							"key": "enderecoComplemento",
+							"value": "null"
+						},
+						{
+							"key": "enderecoUf",
+							"value": "DF"
+						},
+						{
+							"key": "enderecoCidade",
+							"value": "Brasília"
+						},
+						{
+							"key": "enderecoCep",
+							"value": "Samambaia Sul (Samambaia)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Pacotes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cpf\": \"101872139\",\r\n    \"name\": \"Leo\",\r\n    \"email\": \"leo@email\",\r\n    \"phone\": \"99123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/pacotes?idCliente=1&nomeCliente=João&idFuncionario=1&nomeFuncionario=José",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"pacotes"
+					],
+					"query": [
+						{
+							"key": "idCliente",
+							"value": "1"
+						},
+						{
+							"key": "nomeCliente",
+							"value": "João"
+						},
+						{
+							"key": "idFuncionario",
+							"value": "1"
+						},
+						{
+							"key": "nomeFuncionario",
+							"value": "José"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Passagem",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/passagens?origem=Juiz de Fora&destino=Ibitipoca&dataIda=2020-01-01&dataVolta=2021-01-01&idPacote=1&idEmpresa=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"passagens"
+					],
+					"query": [
+						{
+							"key": "origem",
+							"value": "Juiz de Fora"
+						},
+						{
+							"key": "destino",
+							"value": "Ibitipoca"
+						},
+						{
+							"key": "dataIda",
+							"value": "2020-01-01"
+						},
+						{
+							"key": "dataVolta",
+							"value": "2021-01-01"
+						},
+						{
+							"key": "idPacote",
+							"value": "1"
+						},
+						{
+							"key": "idEmpresa",
+							"value": "1"
+						}
 					]
 				}
 			},

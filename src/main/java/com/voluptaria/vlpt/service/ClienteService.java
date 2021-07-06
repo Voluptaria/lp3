@@ -1,7 +1,9 @@
 package com.voluptaria.vlpt.service;
 
 import com.voluptaria.vlpt.model.Cliente;
+import com.voluptaria.vlpt.model.Destino;
 import com.voluptaria.vlpt.repository.ClienteRepository;
+import com.voluptaria.vlpt.repository.EnderecoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,21 +17,24 @@ import java.util.Optional;
 public class ClienteService {
 
     private final ClienteRepository repository;
+    private final EnderecoRepository enderecoRepository;
 
-    public List<Cliente> getClientes(){
+    public List<Cliente> getClientes() {
         return repository.findAll();
     }
 
-    public Optional<Cliente> getClienteById(Long id){
+    public Optional<Cliente> getClienteById(Long id) {
         return repository.findById(id);
     }
 
     @Transactional
     public Cliente save(Cliente cliente) {
         validar(cliente);
+        cliente.setEndereco(enderecoRepository.save(cliente.getEndereco()));
         return repository.save(cliente);
     }
 
     private void validar(Cliente cliente) {
     }
+
 }

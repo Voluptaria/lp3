@@ -42,6 +42,8 @@ public class ClienteDTO {
     public static ClienteDTO createDTO(Cliente cliente) {
         ModelMapper modelMapper = new ModelMapper();
         ClienteDTO clienteDTO = modelMapper.map(cliente, ClienteDTO.class);
+        Endereco endereco = new Endereco();
+        cliente.setEndereco(endereco);
         assert clienteDTO.getEnderecoLogradouro().equals(cliente.getEndereco().getLogradouro());
         assert clienteDTO.getEnderecoNumero().equals(cliente.getEndereco().getNumero());
         assert clienteDTO.getEnderecoComplemento().equals(cliente.getEndereco().getComplemento());
