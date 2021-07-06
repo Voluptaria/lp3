@@ -413,6 +413,104 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Salva Destino",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "dataInicial",
+							"value": "2021-01-01",
+							"type": "text"
+						},
+						{
+							"key": "dataFinal",
+							"value": "2022-01-01",
+							"type": "text"
+						},
+						{
+							"key": "idPacote",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "idEmpresa",
+							"value": "1",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/destinos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"destinos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Salva Passagem",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/passagens?origem=Juiz de Fora&destino=Lisboa&dataIda=2020-01-01&dataVolta=2019-01-01&idPacote=1&idEmpresa=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"passagens"
+					],
+					"query": [
+						{
+							"key": "origem",
+							"value": "Juiz de Fora"
+						},
+						{
+							"key": "destino",
+							"value": "Lisboa"
+						},
+						{
+							"key": "dataIda",
+							"value": "2020-01-01"
+						},
+						{
+							"key": "dataVolta",
+							"value": "2019-01-01"
+						},
+						{
+							"key": "idPacote",
+							"value": "1"
+						},
+						{
+							"key": "idEmpresa",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
