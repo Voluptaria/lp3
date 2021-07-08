@@ -64,7 +64,7 @@ public class FuncionarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity put(@PathVariable Long id, FuncionarioDTO funcionarioDTO){
+    public ResponseEntity put(@PathVariable Long id,@RequestBody FuncionarioDTO funcionarioDTO){
         if(service.getFuncionarioById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Funcionario não Encontrado");
         }

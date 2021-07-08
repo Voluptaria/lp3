@@ -57,7 +57,7 @@ public class DestinoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity put(@PathVariable Long id, DestinoDTO destinoDTO){
+    public ResponseEntity put(@PathVariable Long id,@RequestBody DestinoDTO destinoDTO){
         if(service.getDestinoById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Destino não Encontrado");
         }

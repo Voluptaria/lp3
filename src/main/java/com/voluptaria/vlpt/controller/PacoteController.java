@@ -78,7 +78,7 @@ public class PacoteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity put(@PathVariable Long id, PacoteDTO pacoteDTO){
+    public ResponseEntity put(@PathVariable Long id,@RequestBody PacoteDTO pacoteDTO){
         if(service.getPacoteById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pacote não Encontrado");
         }

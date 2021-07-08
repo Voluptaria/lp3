@@ -458,8 +458,17 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Leo\",\r\n    \"cpf\": \"27390527668\",\r\n    \"telefone\": \"3213\",\r\n    \"email\": \"abc@hot.com\",\r\n    \"enderecoLogradouro\": \"Rua ABC\",\r\n    \"enderecoNumero\": \"10\",\r\n    \"enderecoUf\": \"MG\",\r\n    \"enderecoCidade\": \"Jf\",\r\n    \"enderecoCep\": \"36090-000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/clientes?cpf=27390527668&nome=LEO&telefone=322123&email=LEO@GMAIL&enderecoLogradouro=RUA ABC&enderecoNumero=10&enderecoComplemento=null&enderecoUf=MG&enderecoCidade=JUIZ DE FORA&enderecoCep=36090-000",
+					"raw": "http://localhost:8080/api/v1/clientes",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -473,43 +482,53 @@
 					"query": [
 						{
 							"key": "cpf",
-							"value": "27390527668"
+							"value": "27390527668",
+							"disabled": true
 						},
 						{
 							"key": "nome",
-							"value": "LEO"
+							"value": "LEO",
+							"disabled": true
 						},
 						{
 							"key": "telefone",
-							"value": "322123"
+							"value": "322123",
+							"disabled": true
 						},
 						{
 							"key": "email",
-							"value": "LEO@GMAIL"
+							"value": "LEO@GMAIL",
+							"disabled": true
 						},
 						{
 							"key": "enderecoLogradouro",
-							"value": "RUA ABC"
+							"value": "RUA ABC",
+							"disabled": true
 						},
 						{
 							"key": "enderecoNumero",
-							"value": "10"
+							"value": "10",
+							"disabled": true
 						},
 						{
 							"key": "enderecoComplemento",
-							"value": "null"
+							"value": "null",
+							"disabled": true
 						},
 						{
 							"key": "enderecoUf",
-							"value": "MG"
+							"value": "MG",
+							"disabled": true
 						},
 						{
 							"key": "enderecoCidade",
-							"value": "JUIZ DE FORA"
+							"value": "JUIZ DE FORA",
+							"disabled": true
 						},
 						{
 							"key": "enderecoCep",
-							"value": "36090-000"
+							"value": "36090-000",
+							"disabled": true
 						}
 					]
 				}
@@ -751,8 +770,17 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dataInicial\": \"2021-01-01\",\r\n    \"dataFinal\": \"2025-01-01\",\r\n    \"idPacote\": 1,\r\n    \"idEmpresa\": 1\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/destinos/1?dataInicial=2022-01-09&dataFinal=2022-01-11&idPacote=1&idEmpresa=1",
+					"raw": "http://localhost:8080/api/v1/destinos/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -767,19 +795,23 @@
 					"query": [
 						{
 							"key": "dataInicial",
-							"value": "2022-01-09"
+							"value": "2022-01-09",
+							"disabled": true
 						},
 						{
 							"key": "dataFinal",
-							"value": "2022-01-11"
+							"value": "2022-01-11",
+							"disabled": true
 						},
 						{
 							"key": "idPacote",
-							"value": "1"
+							"value": "1",
+							"disabled": true
 						},
 						{
 							"key": "idEmpresa",
-							"value": "1"
+							"value": "1",
+							"disabled": true
 						}
 					]
 				}
@@ -791,8 +823,17 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"ANTONIO\",\r\n    \"cpf\": \"27390527668\",\r\n    \"telefone\": \"3213\",\r\n    \"email\": \"abc@hot.com\",\r\n    \"enderecoLogradouro\": \"Rua ABC\",\r\n    \"enderecoNumero\": \"10\",\r\n    \"enderecoUf\": \"MG\",\r\n    \"enderecoCidade\": \"Jf\",\r\n    \"enderecoCep\": \"36090-000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/clientes/1?cpf=27390527668&nome=PELE&telefone=322123&email=LEO@GMAIL&enderecoLogradouro=RUA ABC&enderecoNumero=10&enderecoComplemento=null&enderecoUf=MG&enderecoCidade=JUIZ DE FORA&enderecoCep=36090-000",
+					"raw": "http://localhost:8080/api/v1/clientes/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -807,43 +848,53 @@
 					"query": [
 						{
 							"key": "cpf",
-							"value": "27390527668"
+							"value": "27390527668",
+							"disabled": true
 						},
 						{
 							"key": "nome",
-							"value": "PELE"
+							"value": "PELE",
+							"disabled": true
 						},
 						{
 							"key": "telefone",
-							"value": "322123"
+							"value": "322123",
+							"disabled": true
 						},
 						{
 							"key": "email",
-							"value": "LEO@GMAIL"
+							"value": "LEO@GMAIL",
+							"disabled": true
 						},
 						{
 							"key": "enderecoLogradouro",
-							"value": "RUA ABC"
+							"value": "RUA ABC",
+							"disabled": true
 						},
 						{
 							"key": "enderecoNumero",
-							"value": "10"
+							"value": "10",
+							"disabled": true
 						},
 						{
 							"key": "enderecoComplemento",
-							"value": "null"
+							"value": "null",
+							"disabled": true
 						},
 						{
 							"key": "enderecoUf",
-							"value": "MG"
+							"value": "MG",
+							"disabled": true
 						},
 						{
 							"key": "enderecoCidade",
-							"value": "JUIZ DE FORA"
+							"value": "JUIZ DE FORA",
+							"disabled": true
 						},
 						{
 							"key": "enderecoCep",
-							"value": "36090-000"
+							"value": "36090-000",
+							"disabled": true
 						}
 					]
 				}
@@ -855,8 +906,17 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cnpj\": \"47741938000126\",\r\n    \"nome\": \"AMARELA\",\r\n    \"telefone\": \"(61) 98436-6024\",\r\n    \"email\": \"abc@hot.com\",\r\n    \"enderecoLogradouro\": \"Rua ABC\",\r\n    \"enderecoNumero\": \"10\",\r\n    \"enderecoUf\": \"MG\",\r\n    \"enderecoCidade\": \"Jf\",\r\n    \"enderecoCep\": \"36090-000\",\r\n    \"tipoEmpresa\": \"TRANSPORTE\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/empresas/1?cnpj=47741938000126&nome=Amarela&telefone=988722915&email=azul@gmail.com&tipoEmpresa=TRANSPORTE&enderecoLogradouro=Rua Bernardo Mascarenhas&enderecoNumero=42&enderecoComplemento=Fundos&enderecoUf=MG&enderecoCidade=Juiz de Fora&enderecoCep=36080001",
+					"raw": "http://localhost:8080/api/v1/empresas/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -871,47 +931,58 @@
 					"query": [
 						{
 							"key": "cnpj",
-							"value": "47741938000126"
+							"value": "47741938000126",
+							"disabled": true
 						},
 						{
 							"key": "nome",
-							"value": "Amarela"
+							"value": "Amarela",
+							"disabled": true
 						},
 						{
 							"key": "telefone",
-							"value": "988722915"
+							"value": "988722915",
+							"disabled": true
 						},
 						{
 							"key": "email",
-							"value": "azul@gmail.com"
+							"value": "azul@gmail.com",
+							"disabled": true
 						},
 						{
 							"key": "tipoEmpresa",
-							"value": "TRANSPORTE"
+							"value": "TRANSPORTE",
+							"disabled": true
 						},
 						{
 							"key": "enderecoLogradouro",
-							"value": "Rua Bernardo Mascarenhas"
+							"value": "Rua Bernardo Mascarenhas",
+							"disabled": true
 						},
 						{
 							"key": "enderecoNumero",
-							"value": "42"
+							"value": "42",
+							"disabled": true
 						},
 						{
 							"key": "enderecoComplemento",
-							"value": "Fundos"
+							"value": "Fundos",
+							"disabled": true
 						},
 						{
 							"key": "enderecoUf",
-							"value": "MG"
+							"value": "MG",
+							"disabled": true
 						},
 						{
 							"key": "enderecoCidade",
-							"value": "Juiz de Fora"
+							"value": "Juiz de Fora",
+							"disabled": true
 						},
 						{
 							"key": "enderecoCep",
-							"value": "36080001"
+							"value": "36080001",
+							"disabled": true
 						}
 					]
 				}
@@ -923,8 +994,17 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"MARIA\",\r\n    \"cpf\": \"253.767.004-37\",\r\n    \"telefone\": \"(61) 98436-6024\",\r\n    \"email\": \"abc@hot.com\",\r\n    \"enderecoLogradouro\": \"Rua ABC\",\r\n    \"enderecoNumero\": \"10\",\r\n    \"enderecoUf\": \"MG\",\r\n    \"enderecoCidade\": \"Jf\",\r\n    \"enderecoCep\": \"36090-000\",\r\n    \"tipoFuncionario\": \"GERENTE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/clientes/1?cpf=253.767.004-37&nome=Luiza&telefone=(61) 98436-6024&email=lorenafatimagalvao-94@infolink.com.br&tipoFuncionario=GERENTE&enderecoLogradouro=Quadra QS 118 Conjunto 6&enderecoNumero=579&enderecoComplemento=null&enderecoUf=DF&enderecoCidade=Brasília&enderecoCep=Samambaia Sul (Samambaia)",
+					"raw": "http://localhost:8080/api/v1/clientes/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -939,47 +1019,58 @@
 					"query": [
 						{
 							"key": "cpf",
-							"value": "253.767.004-37"
+							"value": "253.767.004-37",
+							"disabled": true
 						},
 						{
 							"key": "nome",
-							"value": "Luiza"
+							"value": "Luiza",
+							"disabled": true
 						},
 						{
 							"key": "telefone",
-							"value": "(61) 98436-6024"
+							"value": "(61) 98436-6024",
+							"disabled": true
 						},
 						{
 							"key": "email",
-							"value": "lorenafatimagalvao-94@infolink.com.br"
+							"value": "lorenafatimagalvao-94@infolink.com.br",
+							"disabled": true
 						},
 						{
 							"key": "tipoFuncionario",
-							"value": "GERENTE"
+							"value": "GERENTE",
+							"disabled": true
 						},
 						{
 							"key": "enderecoLogradouro",
-							"value": "Quadra QS 118 Conjunto 6"
+							"value": "Quadra QS 118 Conjunto 6",
+							"disabled": true
 						},
 						{
 							"key": "enderecoNumero",
-							"value": "579"
+							"value": "579",
+							"disabled": true
 						},
 						{
 							"key": "enderecoComplemento",
-							"value": "null"
+							"value": "null",
+							"disabled": true
 						},
 						{
 							"key": "enderecoUf",
-							"value": "DF"
+							"value": "DF",
+							"disabled": true
 						},
 						{
 							"key": "enderecoCidade",
-							"value": "Brasília"
+							"value": "Brasília",
+							"disabled": true
 						},
 						{
 							"key": "enderecoCep",
-							"value": "Samambaia Sul (Samambaia)"
+							"value": "Samambaia Sul (Samambaia)",
+							"disabled": true
 						}
 					]
 				}
@@ -993,7 +1084,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cpf\": \"101872139\",\r\n    \"name\": \"Leo\",\r\n    \"email\": \"leo@email\",\r\n    \"phone\": \"99123\"\r\n}",
+					"raw": "{\r\n    \"idCliente\": 2,\r\n    \"idFuncionario\": 1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1001,7 +1092,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/pacotes/1?idCliente=1&nomeCliente=Mario&idFuncionario=1&nomeFuncionario=José",
+					"raw": "http://localhost:8080/api/v1/pacotes/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1016,19 +1107,23 @@
 					"query": [
 						{
 							"key": "idCliente",
-							"value": "1"
+							"value": "1",
+							"disabled": true
 						},
 						{
 							"key": "nomeCliente",
-							"value": "Mario"
+							"value": "Mario",
+							"disabled": true
 						},
 						{
 							"key": "idFuncionario",
-							"value": "1"
+							"value": "1",
+							"disabled": true
 						},
 						{
 							"key": "nomeFuncionario",
-							"value": "José"
+							"value": "José",
+							"disabled": true
 						}
 					]
 				}
@@ -1040,8 +1135,17 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"origem\": \"Muriae\",\r\n    \"destino\": \"Ibitipoca\",\r\n    \"dataIda\": \"2021-02-01\",\r\n    \"dataVolta\": \"2021-03-02\",\r\n    \"idPacote\": 1,\r\n    \"idEmpresa\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/passagens/1?origem=Rio de janeiro&destino=Ibitipoca&dataIda=2020-01-01&dataVolta=2021-01-01&idPacote=1&idEmpresa=1",
+					"raw": "http://localhost:8080/api/v1/passagens/1?idEmpresa=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1056,23 +1160,28 @@
 					"query": [
 						{
 							"key": "origem",
-							"value": "Rio de janeiro"
+							"value": "Rio de janeiro",
+							"disabled": true
 						},
 						{
 							"key": "destino",
-							"value": "Ibitipoca"
+							"value": "Ibitipoca",
+							"disabled": true
 						},
 						{
 							"key": "dataIda",
-							"value": "2020-01-01"
+							"value": "2020-01-01",
+							"disabled": true
 						},
 						{
 							"key": "dataVolta",
-							"value": "2021-01-01"
+							"value": "2021-01-01",
+							"disabled": true
 						},
 						{
 							"key": "idPacote",
-							"value": "1"
+							"value": "1",
+							"disabled": true
 						},
 						{
 							"key": "idEmpresa",

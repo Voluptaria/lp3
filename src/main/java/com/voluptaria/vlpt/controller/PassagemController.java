@@ -56,7 +56,7 @@ public class PassagemController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity put(@PathVariable Long id, PassagemDTO passagemDTO){
+    public ResponseEntity put(@PathVariable Long id,@RequestBody PassagemDTO passagemDTO){
         if(service.getPassagemById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Passagem não Encontrado");
         }

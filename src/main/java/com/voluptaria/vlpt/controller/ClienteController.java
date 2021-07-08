@@ -63,7 +63,7 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity put(@PathVariable Long id, ClienteDTO clienteDTO){
+    public ResponseEntity put(@PathVariable Long id,@RequestBody ClienteDTO clienteDTO){
         if(service.getClienteById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente não Encontrado");
         }

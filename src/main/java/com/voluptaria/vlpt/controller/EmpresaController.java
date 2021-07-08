@@ -73,7 +73,7 @@ public class EmpresaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity put(@PathVariable Long id, EmpresaDTO empresaDTO){
+    public ResponseEntity put(@PathVariable Long id,@RequestBody EmpresaDTO empresaDTO){
         if(service.getEmpresaById(id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa não Encontrado");
         }
