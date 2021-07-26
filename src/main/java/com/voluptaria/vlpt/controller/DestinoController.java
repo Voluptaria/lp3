@@ -1,12 +1,10 @@
 package com.voluptaria.vlpt.controller;
 
 import com.voluptaria.vlpt.dto.DestinoDTO;
-import com.voluptaria.vlpt.dto.DestinoDTO;
 import com.voluptaria.vlpt.exception.RegraNegocioException;
-import com.voluptaria.vlpt.model.Destino;
-import com.voluptaria.vlpt.model.Destino;
-import com.voluptaria.vlpt.model.Empresa;
-import com.voluptaria.vlpt.model.Pacote;
+import com.voluptaria.vlpt.model.entity.Destino;
+import com.voluptaria.vlpt.model.entity.Empresa;
+import com.voluptaria.vlpt.model.entity.Pacote;
 import com.voluptaria.vlpt.service.DestinoService;
 import com.voluptaria.vlpt.service.EmpresaService;
 import com.voluptaria.vlpt.service.PacoteService;

@@ -1,13 +1,12 @@
 package com.voluptaria.vlpt.controller;
 
-import com.voluptaria.vlpt.dto.ClienteDTO;
 import com.voluptaria.vlpt.dto.DestinoDTO;
 import com.voluptaria.vlpt.dto.PacoteDTO;
 import com.voluptaria.vlpt.dto.PassagemDTO;
 import com.voluptaria.vlpt.exception.RegraNegocioException;
-import com.voluptaria.vlpt.model.Cliente;
-import com.voluptaria.vlpt.model.Funcionario;
-import com.voluptaria.vlpt.model.Pacote;
+import com.voluptaria.vlpt.model.entity.Cliente;
+import com.voluptaria.vlpt.model.entity.Funcionario;
+import com.voluptaria.vlpt.model.entity.Pacote;
 import com.voluptaria.vlpt.service.ClienteService;
 import com.voluptaria.vlpt.service.FuncionarioService;
 import com.voluptaria.vlpt.service.PacoteService;

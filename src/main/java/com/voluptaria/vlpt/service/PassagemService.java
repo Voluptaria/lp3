@@ -1,9 +1,8 @@
 package com.voluptaria.vlpt.service;
 
 import com.voluptaria.vlpt.exception.RegraNegocioException;
-import com.voluptaria.vlpt.model.Passagem;
-import com.voluptaria.vlpt.model.Passagem;
-import com.voluptaria.vlpt.repository.PassagemRepository;
+import com.voluptaria.vlpt.model.entity.Passagem;
+import com.voluptaria.vlpt.model.Repository.PassagemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

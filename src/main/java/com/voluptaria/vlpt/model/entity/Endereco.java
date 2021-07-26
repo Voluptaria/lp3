@@ -1,4 +1,4 @@
-package com.voluptaria.vlpt.model;
+package com.voluptaria.vlpt.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

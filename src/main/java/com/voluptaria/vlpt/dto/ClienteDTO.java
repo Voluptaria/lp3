@@ -1,15 +1,13 @@
 package com.voluptaria.vlpt.dto;
 
-import com.voluptaria.vlpt.model.Cliente;
-import com.voluptaria.vlpt.model.Endereco;
+import com.voluptaria.vlpt.model.entity.Cliente;
+import com.voluptaria.vlpt.model.entity.Endereco;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 import org.modelmapper.ModelMapper;
 
-import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 

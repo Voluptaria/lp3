@@ -1,8 +1,7 @@
 package com.voluptaria.vlpt.dto;
 
-import com.voluptaria.vlpt.model.Passagem;
+import com.voluptaria.vlpt.model.entity.Passagem;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;

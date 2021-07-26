@@ -1,4 +1,4 @@
-package com.voluptaria.vlpt.model;
+package com.voluptaria.vlpt.model.entity;
 
 import com.voluptaria.vlpt.enums.TipoFuncionario;
 import lombok.AllArgsConstructor;
