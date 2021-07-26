@@ -1,6 +1,7 @@
 package com.voluptaria.vlpt.service;
 
 import com.voluptaria.vlpt.exception.RegraNegocioException;
+import com.voluptaria.vlpt.model.Cliente;
 import com.voluptaria.vlpt.model.Destino;
 import com.voluptaria.vlpt.model.Destino;
 import com.voluptaria.vlpt.repository.DestinoRepository;
@@ -40,6 +41,13 @@ public class DestinoService {
         Objects.requireNonNull(destino.getId());
         return save(destino);
     }
+
+    @Transactional
+    public void delete(Destino destino) {
+        Objects.requireNonNull(destino.getId());
+        repository.delete(destino);
+    }
+
 
     private void validar(Destino destino) {
 

@@ -70,6 +70,20 @@ public class PassagemController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable("id") Long id) {
+        Optional<Passagem> passagem = service.getPassagemById(id);
+        if (!passagem.isPresent()) {
+            return new ResponseEntity("Cliente não encontrado", HttpStatus.NOT_FOUND);
+        }
+        try {
+            service.delete(passagem.get());
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     private Passagem convertToModel(PassagemDTO passagemDTO){
         ModelMapper modelMapper = new ModelMapper();
         Passagem passagem = modelMapper.map(passagemDTO, Passagem.class);

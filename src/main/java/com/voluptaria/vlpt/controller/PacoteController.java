@@ -92,6 +92,20 @@ public class PacoteController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable("id") Long id) {
+        Optional<Pacote> pacote = service.getPacoteById(id);
+        if (!pacote.isPresent()) {
+            return new ResponseEntity("Cliente não encontrado", HttpStatus.NOT_FOUND);
+        }
+        try {
+            service.delete(pacote.get());
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     private Pacote convertToModel(PacoteDTO pacoteDTO){
         ModelMapper modelMapper = new ModelMapper();
         Pacote pacote = modelMapper.map(pacoteDTO, Pacote.class);

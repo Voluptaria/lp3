@@ -45,6 +45,12 @@ public class ClienteService {
         return save(cliente);
     }
 
+    @Transactional
+    public void delete(Cliente cliente) {
+        Objects.requireNonNull(cliente.getId());
+        repository.delete(cliente);
+    }
+
     private void validar(Cliente cliente) {
     }
 

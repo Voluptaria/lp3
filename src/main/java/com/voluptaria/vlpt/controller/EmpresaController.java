@@ -87,6 +87,20 @@ public class EmpresaController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable("id") Long id) {
+        Optional<Empresa> empresa = service.getEmpresaById(id);
+        if (!empresa.isPresent()) {
+            return new ResponseEntity("Empresa não encontrado", HttpStatus.NOT_FOUND);
+        }
+        try {
+            service.delete(empresa.get());
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     private Empresa convertToModel(EmpresaDTO empresaDTO){
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(empresaDTO, Empresa.class);

@@ -40,6 +40,13 @@ public class PassagemService {
         return save(passagem);
     }
 
+    @Transactional
+    public void delete(Passagem passagem) {
+        Objects.requireNonNull(passagem.getId());
+        repository.delete(passagem);
+    }
+
+
     private void validar(Passagem passagem) {
         if(LocalDate.parse(passagem.getDataVolta()).isBefore(LocalDate.parse(passagem.getDataIda()))){
             throw new RegraNegocioException("Data de volta deve ser posterior a data de ida");

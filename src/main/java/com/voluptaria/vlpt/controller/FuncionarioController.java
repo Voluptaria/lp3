@@ -78,6 +78,20 @@ public class FuncionarioController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable("id") Long id) {
+        Optional<Funcionario> funcionario = service.getFuncionarioById(id);
+        if (!funcionario.isPresent()) {
+            return new ResponseEntity("Cliente não encontrado", HttpStatus.NOT_FOUND);
+        }
+        try {
+            service.delete(funcionario.get());
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     private Funcionario convertToModel(FuncionarioDTO funcionarioDTO){
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(funcionarioDTO, Funcionario.class);

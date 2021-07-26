@@ -3,10 +3,8 @@ package com.voluptaria.vlpt.controller;
 import com.voluptaria.vlpt.dto.DestinoDTO;
 import com.voluptaria.vlpt.dto.DestinoDTO;
 import com.voluptaria.vlpt.exception.RegraNegocioException;
+import com.voluptaria.vlpt.model.*;
 import com.voluptaria.vlpt.model.Destino;
-import com.voluptaria.vlpt.model.Destino;
-import com.voluptaria.vlpt.model.Empresa;
-import com.voluptaria.vlpt.model.Pacote;
 import com.voluptaria.vlpt.service.DestinoService;
 import com.voluptaria.vlpt.service.EmpresaService;
 import com.voluptaria.vlpt.service.PacoteService;
@@ -67,6 +65,20 @@ public class DestinoController {
             service.update(destino);
             return ResponseEntity.ok(destino);
         }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable("id") Long id) {
+        Optional<Destino> destino = service.getDestinoById(id);
+        if (!destino.isPresent()) {
+            return new ResponseEntity("Destino não encontrado", HttpStatus.NOT_FOUND);
+        }
+        try {
+            service.delete(destino.get());
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        } catch (RegraNegocioException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

@@ -45,6 +45,13 @@ public class EmpresaService {
         return save(empresa);
     }
 
+    @Transactional
+    public void delete(Empresa empresa) {
+        Objects.requireNonNull(empresa.getId());
+        repository.delete(empresa);
+    }
+
+
     private void validar(Empresa empresa) {
     }
 }

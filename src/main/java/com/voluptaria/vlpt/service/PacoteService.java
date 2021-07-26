@@ -39,6 +39,13 @@ public class PacoteService {
         return save(pacote);
     }
 
+    @Transactional
+    public void delete(Pacote pacote) {
+        Objects.requireNonNull(pacote.getId());
+        repository.delete(pacote);
+    }
+
+
     private void validar(Pacote pacote) {
     }
 }

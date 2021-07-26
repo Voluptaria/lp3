@@ -45,6 +45,13 @@ public class FuncionarioService {
         return save(funcionario);
     }
 
+    @Transactional
+    public void delete(Funcionario funcionario) {
+        Objects.requireNonNull(funcionario.getId());
+        repository.delete(funcionario);
+    }
+
+
     private void validar(Funcionario funcionario) {
     }
 }
