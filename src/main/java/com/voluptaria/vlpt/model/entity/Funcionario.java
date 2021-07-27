@@ -36,9 +36,6 @@ public class Funcionario {
     @OneToOne
     private Endereco endereco;
 
-    @Column(nullable = false)
-    private String senha;
-
     @Enumerated(EnumType.STRING)
     private TipoFuncionario tipoFuncionario;
 
