@@ -83,7 +83,7 @@ public class FuncionarioController {
     public ResponseEntity delete(@PathVariable("id") Long id) {
         Optional<Funcionario> funcionario = service.getFuncionarioById(id);
         if (!funcionario.isPresent()) {
-            return new ResponseEntity("Cliente não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Funcionario não encontrado", HttpStatus.NOT_FOUND);
         }
         try {
             service.delete(funcionario.get());
