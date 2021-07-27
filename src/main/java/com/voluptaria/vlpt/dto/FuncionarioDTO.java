@@ -1,6 +1,6 @@
 package com.voluptaria.vlpt.dto;
 
-import com.voluptaria.vlpt.model.Funcionario;
+import com.voluptaria.vlpt.model.entity.Funcionario;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

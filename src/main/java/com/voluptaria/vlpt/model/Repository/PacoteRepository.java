@@ -1,6 +1,6 @@
-package com.voluptaria.vlpt.repository;
+package com.voluptaria.vlpt.model.Repository;
 
-import com.voluptaria.vlpt.model.Pacote;
+import com.voluptaria.vlpt.model.entity.Pacote;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PacoteRepository extends JpaRepository<Pacote, Long> {

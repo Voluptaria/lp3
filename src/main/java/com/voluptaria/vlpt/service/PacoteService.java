@@ -1,9 +1,7 @@
 package com.voluptaria.vlpt.service;
 
-import com.voluptaria.vlpt.model.Pacote;
-import com.voluptaria.vlpt.model.Pacote;
-import com.voluptaria.vlpt.model.Pacote;
-import com.voluptaria.vlpt.repository.PacoteRepository;
+import com.voluptaria.vlpt.model.entity.Pacote;
+import com.voluptaria.vlpt.model.Repository.PacoteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

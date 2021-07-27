@@ -1,12 +1,12 @@
 package com.voluptaria.vlpt.controller;
 
 import com.voluptaria.vlpt.dto.ClienteDTO;
-import com.voluptaria.vlpt.dto.ClienteDTO;
 import com.voluptaria.vlpt.dto.PacoteDTO;
 import com.voluptaria.vlpt.exception.RegraNegocioException;
-import com.voluptaria.vlpt.model.Cliente;
-import com.voluptaria.vlpt.model.Cliente;
+import com.voluptaria.vlpt.model.entity.Cliente;
+import com.voluptaria.vlpt.model.entity.Endereco;
 import com.voluptaria.vlpt.service.ClienteService;
+import com.voluptaria.vlpt.service.EnderecoService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.Path;
+import java.awt.image.renderable.RenderableImageOp;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 public class ClienteController {
 
     private final ClienteService service;
+    private final EnderecoService enderecoService;
 
     @GetMapping()
     public ResponseEntity getAll() {
@@ -55,6 +56,8 @@ public class ClienteController {
     public ResponseEntity post(ClienteDTO clienteDTO){
         try {
             Cliente cliente = convertToModel(clienteDTO);
+            Endereco endereco = enderecoService.save(cliente.getEndereco());
+            cliente.setEndereco(endereco);
             Cliente clienteSalvo = service.save(cliente);
             return ResponseEntity.status(HttpStatus.CREATED).body(clienteSalvo);
         }catch (RegraNegocioException e){
@@ -93,6 +96,9 @@ public class ClienteController {
 
     private Cliente convertToModel(ClienteDTO clienteDTO){
         ModelMapper modelMapper = new ModelMapper();
+        Cliente cliente = modelMapper.map(clienteDTO, Cliente.class);
+        Endereco endereco = modelMapper.map(clienteDTO, Endereco.class);
+        cliente.setEndereco(endereco);
         return modelMapper.map(clienteDTO, Cliente.class);
     }
 

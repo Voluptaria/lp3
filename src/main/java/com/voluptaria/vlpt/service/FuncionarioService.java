@@ -1,11 +1,8 @@
 package com.voluptaria.vlpt.service;
 
-import com.voluptaria.vlpt.model.Cliente;
-import com.voluptaria.vlpt.model.Funcionario;
-import com.voluptaria.vlpt.model.Funcionario;
-import com.voluptaria.vlpt.model.Funcionario;
-import com.voluptaria.vlpt.repository.EnderecoRepository;
-import com.voluptaria.vlpt.repository.FuncionarioRepository;
+import com.voluptaria.vlpt.model.entity.Funcionario;
+import com.voluptaria.vlpt.model.Repository.EnderecoRepository;
+import com.voluptaria.vlpt.model.Repository.FuncionarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

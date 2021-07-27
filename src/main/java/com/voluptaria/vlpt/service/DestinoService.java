@@ -1,8 +1,6 @@
 package com.voluptaria.vlpt.service;
 
 import com.voluptaria.vlpt.exception.RegraNegocioException;
-import com.voluptaria.vlpt.model.Cliente;
-import com.voluptaria.vlpt.model.Destino;
 import com.voluptaria.vlpt.model.Destino;
 import com.voluptaria.vlpt.repository.DestinoRepository;
 import lombok.RequiredArgsConstructor;

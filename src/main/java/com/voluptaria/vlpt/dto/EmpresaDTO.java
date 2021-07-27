@@ -1,9 +1,7 @@
 package com.voluptaria.vlpt.dto;
 
-import com.voluptaria.vlpt.model.Empresa;
-import com.voluptaria.vlpt.model.Endereco;
+import com.voluptaria.vlpt.model.entity.Empresa;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CNPJ;
