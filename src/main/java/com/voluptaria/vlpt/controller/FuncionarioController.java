@@ -3,7 +3,6 @@ package com.voluptaria.vlpt.controller;
 import com.voluptaria.vlpt.dto.*;
 import com.voluptaria.vlpt.dto.FuncionarioDTO;
 import com.voluptaria.vlpt.exception.RegraNegocioException;
-import com.voluptaria.vlpt.model.entity.Cliente;
 import com.voluptaria.vlpt.model.entity.Endereco;
 import com.voluptaria.vlpt.model.entity.Funcionario;
 import com.voluptaria.vlpt.service.EnderecoService;

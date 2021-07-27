@@ -1,7 +1,5 @@
 package com.voluptaria.vlpt.service;
 
-import com.voluptaria.vlpt.exception.RegraNegocioException;
-import com.voluptaria.vlpt.model.Repository.DestinoRepository;
 import com.voluptaria.vlpt.model.Repository.EnderecoRepository;
 import com.voluptaria.vlpt.model.entity.Endereco;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
