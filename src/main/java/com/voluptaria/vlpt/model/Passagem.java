@@ -1,4 +1,4 @@
-package com.voluptaria.vlpt.model.entity;
+package com.voluptaria.vlpt.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -11,23 +11,29 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Destino {
+public class Passagem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private  String dataInicial;
+    private String origem;
 
-    private String dataFinal;
+    @Column(nullable = false)
+    private String destino;
+
+    @Column(nullable = false)
+    private String dataIda;
+
+    private String dataVolta;
 
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "pacote_id")
-    private  Pacote pacote;
+    private Pacote pacote;
 
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "empresa_id")
-    private  Empresa empresa;
+    private Empresa empresa;
 }

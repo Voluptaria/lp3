@@ -1,4 +1,4 @@
-package com.voluptaria.vlpt.model.entity;
+package com.voluptaria.vlpt.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

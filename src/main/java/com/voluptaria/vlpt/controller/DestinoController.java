@@ -2,15 +2,14 @@ package com.voluptaria.vlpt.controller;
 
 import com.voluptaria.vlpt.dto.DestinoDTO;
 import com.voluptaria.vlpt.exception.RegraNegocioException;
-import com.voluptaria.vlpt.model.entity.Destino;
-import com.voluptaria.vlpt.model.entity.Empresa;
-import com.voluptaria.vlpt.model.entity.Pacote;
+import com.voluptaria.vlpt.model.Destino;
+import com.voluptaria.vlpt.model.Empresa;
+import com.voluptaria.vlpt.model.Pacote;
 import com.voluptaria.vlpt.service.DestinoService;
 import com.voluptaria.vlpt.service.EmpresaService;
 import com.voluptaria.vlpt.service.PacoteService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +18,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/destinos")
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class DestinoController {
 
     private final DestinoService service;
@@ -44,7 +44,7 @@ public class DestinoController {
     }
 
     @PostMapping
-    public ResponseEntity post(DestinoDTO destinoDTO){
+    public ResponseEntity post(@RequestBody DestinoDTO destinoDTO){
         try {
             Destino destino = convertToModel(destinoDTO);
             Destino destinoSalvo = service.save(destino);
@@ -70,17 +70,13 @@ public class DestinoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable("id") Long id) {
+    public ResponseEntity delete(@PathVariable Long id){
         Optional<Destino> destino = service.getDestinoById(id);
-        if (!destino.isPresent()) {
-            return new ResponseEntity("Destino não encontrado", HttpStatus.NOT_FOUND);
+        if(destino.isEmpty()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Destino não encontrado");
         }
-        try {
-            service.delete(destino.get());
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
-        } catch (RegraNegocioException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        service.delete(destino.get());
+        return ResponseEntity.noContent().build();
     }
 
     private Destino convertToModel(DestinoDTO destinoDTO){

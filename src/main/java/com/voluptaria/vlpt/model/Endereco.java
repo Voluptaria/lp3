@@ -1,4 +1,4 @@
-package com.voluptaria.vlpt.model.entity;
+package com.voluptaria.vlpt.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +15,6 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String logradouro;
 
     @Column(nullable = false)
@@ -23,10 +22,8 @@ public class Endereco {
 
     private String complemento;
 
-    @Column(nullable = false)
     private String uf;
 
-    @Column(nullable = false)
     private String cidade;
 
     @Column(nullable = false)

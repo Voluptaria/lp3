@@ -1,15 +1,12 @@
 package com.voluptaria.vlpt.controller;
 
-import com.voluptaria.vlpt.dto.*;
 import com.voluptaria.vlpt.dto.FuncionarioDTO;
+import com.voluptaria.vlpt.dto.PacoteDTO;
 import com.voluptaria.vlpt.exception.RegraNegocioException;
-import com.voluptaria.vlpt.model.entity.Endereco;
-import com.voluptaria.vlpt.model.entity.Funcionario;
-import com.voluptaria.vlpt.service.EnderecoService;
+import com.voluptaria.vlpt.model.Funcionario;
 import com.voluptaria.vlpt.service.FuncionarioService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +15,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/funcionarios")
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class FuncionarioController {
 
     private final FuncionarioService service;
-    private final EnderecoService enderecoService;
 
     @GetMapping()
     public ResponseEntity getAll() {
@@ -52,11 +49,9 @@ public class FuncionarioController {
     }
 
     @PostMapping
-    public ResponseEntity post(FuncionarioDTO funcionarioDTO){
+    public ResponseEntity post(@RequestBody FuncionarioDTO funcionarioDTO){
         try {
             Funcionario funcionario = convertToModel(funcionarioDTO);
-            Endereco endereco = enderecoService.save(funcionario.getEndereco());
-            funcionario.setEndereco(endereco);
             Funcionario funcionarioSalvo = service.save(funcionario);
             return ResponseEntity.status(HttpStatus.CREATED).body(funcionarioSalvo);
         }catch (RegraNegocioException e){
@@ -80,24 +75,17 @@ public class FuncionarioController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable("id") Long id) {
+    public ResponseEntity delete(@PathVariable Long id){
         Optional<Funcionario> funcionario = service.getFuncionarioById(id);
-        if (!funcionario.isPresent()) {
-            return new ResponseEntity("Funcionario não encontrado", HttpStatus.NOT_FOUND);
+        if(funcionario.isEmpty()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Funcionario não encontrado");
         }
-        try {
-            service.delete(funcionario.get());
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
-        } catch (RegraNegocioException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        service.delete(funcionario.get());
+        return ResponseEntity.noContent().build();
     }
 
     private Funcionario convertToModel(FuncionarioDTO funcionarioDTO){
         ModelMapper modelMapper = new ModelMapper();
-        Funcionario funcionario = modelMapper.map(funcionarioDTO, Funcionario.class);
-        Endereco endereco = modelMapper.map(funcionarioDTO, Endereco.class);
-        funcionario.setEndereco(endereco);
         return modelMapper.map(funcionarioDTO, Funcionario.class);
     }
 }

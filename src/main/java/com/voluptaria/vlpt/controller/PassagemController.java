@@ -2,15 +2,14 @@ package com.voluptaria.vlpt.controller;
 
 import com.voluptaria.vlpt.dto.PassagemDTO;
 import com.voluptaria.vlpt.exception.RegraNegocioException;
-import com.voluptaria.vlpt.model.entity.Passagem;
-import com.voluptaria.vlpt.model.entity.Empresa;
-import com.voluptaria.vlpt.model.entity.Pacote;
+import com.voluptaria.vlpt.model.Empresa;
+import com.voluptaria.vlpt.model.Pacote;
+import com.voluptaria.vlpt.model.Passagem;
 import com.voluptaria.vlpt.service.EmpresaService;
 import com.voluptaria.vlpt.service.PacoteService;
 import com.voluptaria.vlpt.service.PassagemService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +18,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/passagens")
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class PassagemController {
 
     private final PassagemService service;
@@ -43,7 +43,7 @@ public class PassagemController {
         return ResponseEntity.ok(PassagemDTO.createDTO(passagem.get()));
     }
     @PostMapping
-    public ResponseEntity post(PassagemDTO passagemDTO){
+    public ResponseEntity post(@RequestBody PassagemDTO passagemDTO){
         try {
             Passagem passagem = convertToModel(passagemDTO);
             Passagem passagemSalvo = service.save(passagem);
@@ -69,17 +69,13 @@ public class PassagemController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable("id") Long id) {
+    public ResponseEntity delete(@PathVariable Long id){
         Optional<Passagem> passagem = service.getPassagemById(id);
-        if (!passagem.isPresent()) {
-            return new ResponseEntity("Cliente não encontrado", HttpStatus.NOT_FOUND);
+        if(passagem.isEmpty()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Passagem não encontrado");
         }
-        try {
-            service.delete(passagem.get());
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
-        } catch (RegraNegocioException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        service.delete(passagem.get());
+        return ResponseEntity.noContent().build();
     }
 
     private Passagem convertToModel(PassagemDTO passagemDTO){

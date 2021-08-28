@@ -1,6 +1,6 @@
-package com.voluptaria.vlpt.model.Repository;
+package com.voluptaria.vlpt.repository;
 
-import com.voluptaria.vlpt.model.entity.Cliente;
+import com.voluptaria.vlpt.model.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {

@@ -1,4 +1,4 @@
-package com.voluptaria.vlpt.model.entity;
+package com.voluptaria.vlpt.model;
 
 import com.voluptaria.vlpt.enums.TipoEmpresa;
 import lombok.AllArgsConstructor;
@@ -21,23 +21,21 @@ public class Empresa {
     private Long id;
 
     @Column(nullable = false)
-    @CNPJ
     private String cnpj;
 
     @Column(nullable = false)
     private String nome;
 
-    @Email
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column
     private String telefone;
 
     @Enumerated(EnumType.STRING)
     private TipoEmpresa tipoEmpresa;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
     @OneToMany(mappedBy = "empresa")

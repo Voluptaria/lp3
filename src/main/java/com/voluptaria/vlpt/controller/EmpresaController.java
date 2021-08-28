@@ -1,15 +1,13 @@
 package com.voluptaria.vlpt.controller;
 
-import com.voluptaria.vlpt.dto.*;
+import com.voluptaria.vlpt.dto.DestinoDTO;
 import com.voluptaria.vlpt.dto.EmpresaDTO;
+import com.voluptaria.vlpt.dto.PassagemDTO;
 import com.voluptaria.vlpt.exception.RegraNegocioException;
-import com.voluptaria.vlpt.model.entity.Empresa;
-import com.voluptaria.vlpt.model.entity.Endereco;
+import com.voluptaria.vlpt.model.Empresa;
 import com.voluptaria.vlpt.service.EmpresaService;
-import com.voluptaria.vlpt.service.EnderecoService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +16,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/empresas")
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class EmpresaController {
 
     private final EmpresaService service;
-    private final EnderecoService enderecoService;
 
     @GetMapping()
     public ResponseEntity getAll() {
@@ -62,11 +60,9 @@ public class EmpresaController {
     }
 
     @PostMapping
-    public ResponseEntity post(EmpresaDTO empresaDTO){
+    public ResponseEntity post(@RequestBody EmpresaDTO empresaDTO){
         try {
             Empresa empresa = convertToModel(empresaDTO);
-            Endereco endereco = enderecoService.save(empresa.getEndereco());
-            empresa.setEndereco(endereco);
             Empresa empresaSalvo = service.save(empresa);
             return ResponseEntity.status(HttpStatus.CREATED).body(empresaSalvo);
         }catch (RegraNegocioException e){
@@ -90,24 +86,17 @@ public class EmpresaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable("id") Long id) {
+    public ResponseEntity delete(@PathVariable Long id){
         Optional<Empresa> empresa = service.getEmpresaById(id);
-        if (!empresa.isPresent()) {
-            return new ResponseEntity("Empresa não encontrado", HttpStatus.NOT_FOUND);
+        if(empresa.isEmpty()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Empresa não encontrado");
         }
-        try {
-            service.delete(empresa.get());
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
-        } catch (RegraNegocioException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        service.delete(empresa.get());
+        return ResponseEntity.noContent().build();
     }
 
     private Empresa convertToModel(EmpresaDTO empresaDTO){
         ModelMapper modelMapper = new ModelMapper();
-        Empresa empresa = modelMapper.map(empresaDTO, Empresa.class);
-        Endereco endereco = modelMapper.map(empresaDTO, Endereco.class);
-        empresa.setEndereco(endereco);
         return modelMapper.map(empresaDTO, Empresa.class);
     }
 }

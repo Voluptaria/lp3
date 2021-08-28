@@ -1,10 +1,10 @@
 package com.voluptaria.vlpt.service;
 
-import com.voluptaria.vlpt.model.entity.Cliente;
-import com.voluptaria.vlpt.model.Repository.ClienteRepository;
-import com.voluptaria.vlpt.model.Repository.EnderecoRepository;
+import com.voluptaria.vlpt.exception.RegraNegocioException;
+import com.voluptaria.vlpt.model.Cliente;
+import com.voluptaria.vlpt.repository.ClienteRepository;
+import com.voluptaria.vlpt.repository.EnderecoRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -13,7 +13,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class ClienteService {
 
     private final ClienteRepository repository;
@@ -45,12 +45,21 @@ public class ClienteService {
 
     @Transactional
     public void delete(Cliente cliente) {
-        Objects.requireNonNull(cliente.getId());
         repository.delete(cliente);
     }
 
     private void validar(Cliente cliente) {
+        if(cliente.getCpf() == null || cliente.getCpf().trim().equals("")){
+            throw new RegraNegocioException("CPF inválido");
+        }
+        if(cliente.getNome() == null || cliente.getNome().trim().equals("")){
+            throw new RegraNegocioException("Nome inválido");
+        }
+        if(cliente.getEmail() == null || cliente.getEmail().trim().equals("")){
+            throw new RegraNegocioException("Email inválido");
+        }
     }
+
 
 
 }

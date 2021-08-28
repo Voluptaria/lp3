@@ -1,10 +1,10 @@
 package com.voluptaria.vlpt.service;
 
-import com.voluptaria.vlpt.model.entity.Empresa;
-import com.voluptaria.vlpt.model.Repository.EmpresaRepository;
-import com.voluptaria.vlpt.model.Repository.EnderecoRepository;
+import com.voluptaria.vlpt.exception.RegraNegocioException;
+import com.voluptaria.vlpt.model.Empresa;
+import com.voluptaria.vlpt.repository.EmpresaRepository;
+import com.voluptaria.vlpt.repository.EnderecoRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -13,7 +13,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class EmpresaService {
 
     private final EmpresaRepository repository;
@@ -44,11 +44,18 @@ public class EmpresaService {
 
     @Transactional
     public void delete(Empresa empresa) {
-        Objects.requireNonNull(empresa.getId());
         repository.delete(empresa);
     }
 
-
     private void validar(Empresa empresa) {
+        if(empresa.getCnpj() == null || empresa.getCnpj().trim().equals("")){
+            throw new RegraNegocioException("CNPJ inválido");
+        }
+        if(empresa.getNome() == null || empresa.getNome().trim().equals("")){
+            throw new RegraNegocioException("Nome inválido");
+        }
+        if(empresa.getEmail() == null || empresa.getEmail().trim().equals("")){
+            throw new RegraNegocioException("Email inválido");
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.voluptaria.vlpt.model.entity;
+package com.voluptaria.vlpt.model;
 
 import com.voluptaria.vlpt.enums.TipoFuncionario;
 import lombok.AllArgsConstructor;
@@ -19,22 +19,23 @@ public class Funcionario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @CPF
     @Column(nullable = false)
     private String cpf;
 
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
+    @Column
     private String telefone;
 
-    @Email
     @Column(nullable = false)
     private String email;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
+
+    @Column(nullable = false)
+    private String senha;
 
     @Enumerated(EnumType.STRING)
     private TipoFuncionario tipoFuncionario;

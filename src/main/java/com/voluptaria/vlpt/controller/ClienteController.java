@@ -3,29 +3,27 @@ package com.voluptaria.vlpt.controller;
 import com.voluptaria.vlpt.dto.ClienteDTO;
 import com.voluptaria.vlpt.dto.PacoteDTO;
 import com.voluptaria.vlpt.exception.RegraNegocioException;
-import com.voluptaria.vlpt.model.entity.Cliente;
-import com.voluptaria.vlpt.model.entity.Endereco;
+import com.voluptaria.vlpt.model.Cliente;
 import com.voluptaria.vlpt.service.ClienteService;
-import com.voluptaria.vlpt.service.EnderecoService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.image.renderable.RenderableImageOp;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@CrossOrigin
+@ApiOperation("Controller de Cliente")
 @RestController
 @RequestMapping("/api/v1/clientes")
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class ClienteController {
 
     private final ClienteService service;
-    private final EnderecoService enderecoService;
 
     @GetMapping()
     public ResponseEntity getAll() {
@@ -53,11 +51,10 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity post(ClienteDTO clienteDTO){
-        try {
+    public ResponseEntity post(@RequestBody ClienteDTO clienteDTO){
+         try {
+
             Cliente cliente = convertToModel(clienteDTO);
-            Endereco endereco = enderecoService.save(cliente.getEndereco());
-            cliente.setEndereco(endereco);
             Cliente clienteSalvo = service.save(cliente);
             return ResponseEntity.status(HttpStatus.CREATED).body(clienteSalvo);
         }catch (RegraNegocioException e){
@@ -81,25 +78,21 @@ public class ClienteController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable("id") Long id) {
+    public ResponseEntity delete(@PathVariable Long id){
         Optional<Cliente> cliente = service.getClienteById(id);
-        if (!cliente.isPresent()) {
-            return new ResponseEntity("Cliente não encontrado", HttpStatus.NOT_FOUND);
+        if(cliente.isEmpty()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cliente não encontrado");
         }
-        try {
-            service.delete(cliente.get());
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
-        } catch (RegraNegocioException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        service.delete(cliente.get());
+        return ResponseEntity.noContent().build();
     }
+
 
     private Cliente convertToModel(ClienteDTO clienteDTO){
         ModelMapper modelMapper = new ModelMapper();
-        Cliente cliente = modelMapper.map(clienteDTO, Cliente.class);
-        Endereco endereco = modelMapper.map(clienteDTO, Endereco.class);
-        cliente.setEndereco(endereco);
         return modelMapper.map(clienteDTO, Cliente.class);
     }
+
+
 
 }

@@ -4,15 +4,14 @@ import com.voluptaria.vlpt.dto.DestinoDTO;
 import com.voluptaria.vlpt.dto.PacoteDTO;
 import com.voluptaria.vlpt.dto.PassagemDTO;
 import com.voluptaria.vlpt.exception.RegraNegocioException;
-import com.voluptaria.vlpt.model.entity.Cliente;
-import com.voluptaria.vlpt.model.entity.Funcionario;
-import com.voluptaria.vlpt.model.entity.Pacote;
+import com.voluptaria.vlpt.model.Cliente;
+import com.voluptaria.vlpt.model.Funcionario;
+import com.voluptaria.vlpt.model.Pacote;
 import com.voluptaria.vlpt.service.ClienteService;
 import com.voluptaria.vlpt.service.FuncionarioService;
 import com.voluptaria.vlpt.service.PacoteService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +20,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/pacotes")
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class PacoteController {
 
     private final PacoteService service;
@@ -66,7 +66,7 @@ public class PacoteController {
     }
 
     @PostMapping
-    public ResponseEntity post(PacoteDTO pacoteDTO){
+    public ResponseEntity post(@RequestBody PacoteDTO pacoteDTO){
         try {
             Pacote pacote = convertToModel(pacoteDTO);
             Pacote pacoteSalvo = service.save(pacote);
@@ -92,17 +92,13 @@ public class PacoteController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable("id") Long id) {
+    public ResponseEntity delete(@PathVariable Long id){
         Optional<Pacote> pacote = service.getPacoteById(id);
-        if (!pacote.isPresent()) {
-            return new ResponseEntity("Cliente não encontrado", HttpStatus.NOT_FOUND);
+        if(pacote.isEmpty()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Pacote não encontrado");
         }
-        try {
-            service.delete(pacote.get());
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
-        } catch (RegraNegocioException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        service.delete(pacote.get());
+        return ResponseEntity.noContent().build();
     }
 
     private Pacote convertToModel(PacoteDTO pacoteDTO){

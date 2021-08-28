@@ -1,9 +1,8 @@
 package com.voluptaria.vlpt.service;
 
-import com.voluptaria.vlpt.model.entity.Pacote;
-import com.voluptaria.vlpt.model.Repository.PacoteRepository;
+import com.voluptaria.vlpt.model.Pacote;
+import com.voluptaria.vlpt.repository.PacoteRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -12,7 +11,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class PacoteService {
 
     private final PacoteRepository repository;
@@ -39,10 +38,9 @@ public class PacoteService {
 
     @Transactional
     public void delete(Pacote pacote) {
-        Objects.requireNonNull(pacote.getId());
+
         repository.delete(pacote);
     }
-
 
     private void validar(Pacote pacote) {
     }

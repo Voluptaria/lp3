@@ -1,12 +1,10 @@
-package com.voluptaria.vlpt.model.entity;
+package com.voluptaria.vlpt.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import java.util.List;
 
 @Entity
@@ -18,21 +16,19 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @CPF
     @Column(nullable = false)
     private String cpf;
 
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
+    @Column
     private String telefone;
 
-    @Email
     @Column(nullable = false)
     private String email;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
     @OneToMany(mappedBy = "cliente")

@@ -1,10 +1,9 @@
 package com.voluptaria.vlpt.service;
 
 import com.voluptaria.vlpt.exception.RegraNegocioException;
-import com.voluptaria.vlpt.model.entity.Passagem;
-import com.voluptaria.vlpt.model.Repository.PassagemRepository;
+import com.voluptaria.vlpt.model.Passagem;
+import com.voluptaria.vlpt.repository.PassagemRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -14,7 +13,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor
 public class PassagemService {
 
     private final PassagemRepository repository;
@@ -22,7 +21,6 @@ public class PassagemService {
     public List<Passagem> getPassagens(){
         return repository.findAll();
     }
-
     public Optional<Passagem> getPassagemById(Long id){
         return repository.findById(id);
     }
@@ -36,19 +34,28 @@ public class PassagemService {
     @Transactional
     public Passagem update(Passagem passagem) {
         Objects.requireNonNull(passagem.getId());
-        return save(passagem);
+        validar(passagem);
+        return repository.save(passagem);
     }
 
     @Transactional
     public void delete(Passagem passagem) {
-        Objects.requireNonNull(passagem.getId());
         repository.delete(passagem);
     }
 
-
-    private void validar(Passagem passagem) {
+    public void validar(Passagem passagem) {
+        if(passagem.getOrigem() == null || passagem.getOrigem().trim().equals("")){
+            throw new RegraNegocioException("Origem inválida");
+        }
+        if(passagem.getDestino() == null || passagem.getDestino().trim().equals("")){
+            throw new RegraNegocioException("Destino inválido");
+        }
+        if(passagem.getDataIda() == null || passagem.getDataIda().trim().equals("")){
+            throw new RegraNegocioException("Nome inválido");
+        }
         if(LocalDate.parse(passagem.getDataVolta()).isBefore(LocalDate.parse(passagem.getDataIda()))){
             throw new RegraNegocioException("Data de volta deve ser posterior a data de ida");
         }
+
     }
 }
